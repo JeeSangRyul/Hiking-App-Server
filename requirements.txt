@@ -1,2 +1,9 @@
 fastapi
 uvicorn[standard]
+httpx
+asyncpg
+PyJWT
+python-dotenv
+# 등산로 변환 스크립트(tools/build_catalog.py)용
+pyproj
+cryptography   # PyJWT의 ES256/RS256 검증용
