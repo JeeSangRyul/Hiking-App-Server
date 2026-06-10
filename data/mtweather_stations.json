@@ -1,0 +1,3634 @@
+[
+ {
+  "region": "경기도",
+  "mountain": "파주 팔일봉",
+  "obsid": "1890",
+  "lat": 37.78,
+  "lon": 126.92,
+  "altitudeM": 242.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양평 금왕산",
+  "obsid": "1891",
+  "lat": 37.46,
+  "lon": 127.79,
+  "altitudeM": 364.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양평 어비산",
+  "obsid": "1892",
+  "lat": 37.57,
+  "lon": 127.53,
+  "altitudeM": 728.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양평 삼각산",
+  "obsid": "1893",
+  "lat": 37.44,
+  "lon": 127.71,
+  "altitudeM": 314.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "포천 한나무봉",
+  "obsid": "1894",
+  "lat": 37.95,
+  "lon": 127.38,
+  "altitudeM": 713.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "가평 서리산",
+  "obsid": "1895",
+  "lat": 37.76,
+  "lon": 127.33,
+  "altitudeM": 692.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "가평 청우산",
+  "obsid": "1896",
+  "lat": 37.8,
+  "lon": 127.42,
+  "altitudeM": 552.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "남양주 용암산",
+  "obsid": "1903",
+  "lat": 37.75,
+  "lon": 127.14,
+  "altitudeM": 382.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "파주 비학산",
+  "obsid": "1905",
+  "lat": 37.88,
+  "lon": 126.91,
+  "altitudeM": 373.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양평 소리산",
+  "obsid": "1906",
+  "lat": 37.61,
+  "lon": 127.67,
+  "altitudeM": 396.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "홍릉수목원임외",
+  "obsid": "1910",
+  "lat": 37.59,
+  "lon": 127.04,
+  "altitudeM": 36.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 천장산",
+  "obsid": "1912",
+  "lat": 37.6,
+  "lon": 127.05,
+  "altitudeM": 65.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 용마산",
+  "obsid": "1913",
+  "lat": 37.58,
+  "lon": 127.11,
+  "altitudeM": 274.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 봉산",
+  "obsid": "1914",
+  "lat": 37.61,
+  "lon": 126.9,
+  "altitudeM": 179.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 개화산",
+  "obsid": "1915",
+  "lat": 37.58,
+  "lon": 126.8,
+  "altitudeM": 108.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 구룡산",
+  "obsid": "1916",
+  "lat": 37.47,
+  "lon": 127.05,
+  "altitudeM": 222.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 관악산",
+  "obsid": "1917",
+  "lat": 37.45,
+  "lon": 126.93,
+  "altitudeM": 382.0
+ },
+ {
+  "region": "서울특별시",
+  "mountain": "서울 수락산",
+  "obsid": "1918",
+  "lat": 37.69,
+  "lon": 127.08,
+  "altitudeM": 340.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "여주 황학산",
+  "obsid": "1919",
+  "lat": 37.27,
+  "lon": 127.65,
+  "altitudeM": 112.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "연천 고대산",
+  "obsid": "1939",
+  "lat": 38.16,
+  "lon": 127.14,
+  "altitudeM": 407.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "연천 야월산",
+  "obsid": "1940",
+  "lat": 38.23,
+  "lon": 127.13,
+  "altitudeM": 329.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양평 산음 자연휴양림",
+  "obsid": "1941",
+  "lat": 37.59,
+  "lon": 127.56,
+  "altitudeM": 782.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양평 중미산 자연휴양림",
+  "obsid": "1942",
+  "lat": 37.58,
+  "lon": 127.45,
+  "altitudeM": 621.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "가평 유명산 자연휴양림",
+  "obsid": "1943",
+  "lat": 37.58,
+  "lon": 127.48,
+  "altitudeM": 402.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "양주 아세안 자연휴양림",
+  "obsid": "1944",
+  "lat": 37.77,
+  "lon": 126.94,
+  "altitudeM": 244.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "포천 운악산 자연휴양림",
+  "obsid": "1945",
+  "lat": 37.88,
+  "lon": 127.3,
+  "altitudeM": 293.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "화성 칠보산",
+  "obsid": "1946",
+  "lat": 37.27,
+  "lon": 126.92,
+  "altitudeM": 80.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "포천 운악산",
+  "obsid": "1947",
+  "lat": 37.76,
+  "lon": 127.18,
+  "altitudeM": 278.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "용인 바래기산",
+  "obsid": "1948",
+  "lat": 37.17,
+  "lon": 127.27,
+  "altitudeM": 367.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "여주 마감산",
+  "obsid": "1949",
+  "lat": 37.3,
+  "lon": 127.75,
+  "altitudeM": 280.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 연엽산",
+  "obsid": "2001",
+  "lat": 37.79,
+  "lon": 127.83,
+  "altitudeM": 641.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양구 봉화산",
+  "obsid": "2009",
+  "lat": 38.08,
+  "lon": 128.1,
+  "altitudeM": 663.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 두위봉",
+  "obsid": "2011",
+  "lat": 37.19,
+  "lon": 128.72,
+  "altitudeM": 976.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 대암산",
+  "obsid": "2013",
+  "lat": 38.2,
+  "lon": 128.12,
+  "altitudeM": 1156.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 원대봉",
+  "obsid": "2014",
+  "lat": 37.98,
+  "lon": 128.21,
+  "altitudeM": 817.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 백석봉",
+  "obsid": "2015",
+  "lat": 37.46,
+  "lon": 128.65,
+  "altitudeM": 740.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 백석산",
+  "obsid": "2019",
+  "lat": 37.52,
+  "lon": 128.51,
+  "altitudeM": 1209.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 중왕산",
+  "obsid": "2020",
+  "lat": 37.48,
+  "lon": 128.5,
+  "altitudeM": 1050.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "화천 두류산",
+  "obsid": "2021",
+  "lat": 38.15,
+  "lon": 127.55,
+  "altitudeM": 893.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 망경대산",
+  "obsid": "2023",
+  "lat": 37.15,
+  "lon": 128.62,
+  "altitudeM": 757.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 곰봉",
+  "obsid": "2024",
+  "lat": 37.09,
+  "lon": 128.66,
+  "altitudeM": 798.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 육백산",
+  "obsid": "2025",
+  "lat": 37.21,
+  "lon": 129.11,
+  "altitudeM": 976.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 피래산",
+  "obsid": "2026",
+  "lat": 37.66,
+  "lon": 129.0,
+  "altitudeM": 274.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 중봉산",
+  "obsid": "2027",
+  "lat": 37.45,
+  "lon": 128.95,
+  "altitudeM": 1049.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 화란봉",
+  "obsid": "2028",
+  "lat": 37.65,
+  "lon": 128.82,
+  "altitudeM": 605.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 하봉",
+  "obsid": "2029",
+  "lat": 37.46,
+  "lon": 128.6,
+  "altitudeM": 1014.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 늑평산",
+  "obsid": "2030",
+  "lat": 37.43,
+  "lon": 128.59,
+  "altitudeM": 810.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 매봉",
+  "obsid": "2031",
+  "lat": 37.77,
+  "lon": 128.71,
+  "altitudeM": 1110.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 청태산",
+  "obsid": "2032",
+  "lat": 37.51,
+  "lon": 128.31,
+  "altitudeM": 975.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 매봉산",
+  "obsid": "2033",
+  "lat": 37.51,
+  "lon": 127.84,
+  "altitudeM": 364.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 태기산",
+  "obsid": "2034",
+  "lat": 37.59,
+  "lon": 128.26,
+  "altitudeM": 810.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 느랏재",
+  "obsid": "2035",
+  "lat": 37.89,
+  "lon": 127.82,
+  "altitudeM": 578.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 사오랑골",
+  "obsid": "2036",
+  "lat": 37.88,
+  "lon": 127.88,
+  "altitudeM": 533.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 마당재골",
+  "obsid": "2037",
+  "lat": 37.57,
+  "lon": 127.88,
+  "altitudeM": 434.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 매화산",
+  "obsid": "2038",
+  "lat": 37.62,
+  "lon": 127.86,
+  "altitudeM": 432.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 까끈봉",
+  "obsid": "2039",
+  "lat": 37.63,
+  "lon": 127.82,
+  "altitudeM": 373.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 오음산",
+  "obsid": "2040",
+  "lat": 37.62,
+  "lon": 127.92,
+  "altitudeM": 465.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 응봉산",
+  "obsid": "2041",
+  "lat": 37.8,
+  "lon": 128.22,
+  "altitudeM": 631.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 금병산",
+  "obsid": "2042",
+  "lat": 37.81,
+  "lon": 127.75,
+  "altitudeM": 381.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 죽엽산",
+  "obsid": "2043",
+  "lat": 38.03,
+  "lon": 127.85,
+  "altitudeM": 531.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 토보산",
+  "obsid": "2044",
+  "lat": 38.07,
+  "lon": 127.57,
+  "altitudeM": 672.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 석파령",
+  "obsid": "2045",
+  "lat": 37.85,
+  "lon": 127.64,
+  "altitudeM": 521.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 뒷재봉",
+  "obsid": "2046",
+  "lat": 37.78,
+  "lon": 127.58,
+  "altitudeM": 339.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "가평 봉미산",
+  "obsid": "2047",
+  "lat": 37.6,
+  "lon": 127.55,
+  "altitudeM": 539.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "화천 일산",
+  "obsid": "2048",
+  "lat": 38.19,
+  "lon": 127.81,
+  "altitudeM": 683.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "화천 오봉산",
+  "obsid": "2049",
+  "lat": 38.01,
+  "lon": 127.81,
+  "altitudeM": 340.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "철원 용봉산",
+  "obsid": "2050",
+  "lat": 38.14,
+  "lon": 127.35,
+  "altitudeM": 302.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 어답산",
+  "obsid": "2051",
+  "lat": 37.59,
+  "lon": 128.12,
+  "altitudeM": 609.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 고루포기산",
+  "obsid": "2052",
+  "lat": 37.66,
+  "lon": 128.75,
+  "altitudeM": 714.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 대궁산",
+  "obsid": "2053",
+  "lat": 37.77,
+  "lon": 128.78,
+  "altitudeM": 553.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 시루봉",
+  "obsid": "2054",
+  "lat": 37.91,
+  "lon": 128.69,
+  "altitudeM": 618.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 구양사골",
+  "obsid": "2055",
+  "lat": 37.73,
+  "lon": 128.71,
+  "altitudeM": 930.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 능경봉",
+  "obsid": "2056",
+  "lat": 37.7,
+  "lon": 128.76,
+  "altitudeM": 938.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 황병산",
+  "obsid": "2057",
+  "lat": 37.74,
+  "lon": 128.67,
+  "altitudeM": 1137.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 동강자연휴양림",
+  "obsid": "2058",
+  "lat": 37.26,
+  "lon": 128.61,
+  "altitudeM": 588.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 꽃밭덩이산",
+  "obsid": "2059",
+  "lat": 37.38,
+  "lon": 128.55,
+  "altitudeM": 736.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 뇌암산",
+  "obsid": "2060",
+  "lat": 37.18,
+  "lon": 129.22,
+  "altitudeM": 685.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 깃대봉",
+  "obsid": "2061",
+  "lat": 37.29,
+  "lon": 129.12,
+  "altitudeM": 668.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 한오봉",
+  "obsid": "2063",
+  "lat": 37.23,
+  "lon": 129.23,
+  "altitudeM": 890.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 아미산",
+  "obsid": "2064",
+  "lat": 38.1,
+  "lon": 128.14,
+  "altitudeM": 736.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 명당산",
+  "obsid": "2065",
+  "lat": 38.18,
+  "lon": 128.26,
+  "altitudeM": 702.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 응봉산",
+  "obsid": "2066",
+  "lat": 37.99,
+  "lon": 128.2,
+  "altitudeM": 790.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 서리골",
+  "obsid": "2067",
+  "lat": 38.0,
+  "lon": 128.37,
+  "altitudeM": 712.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양구 기룡산",
+  "obsid": "2068",
+  "lat": 38.13,
+  "lon": 128.1,
+  "altitudeM": 691.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양구 사명산",
+  "obsid": "2069",
+  "lat": 38.09,
+  "lon": 127.91,
+  "altitudeM": 685.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양구 천미골",
+  "obsid": "2070",
+  "lat": 38.25,
+  "lon": 127.91,
+  "altitudeM": 649.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양구 검무정골",
+  "obsid": "2071",
+  "lat": 38.21,
+  "lon": 127.89,
+  "altitudeM": 681.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 매봉산",
+  "obsid": "2074",
+  "lat": 37.57,
+  "lon": 128.81,
+  "altitudeM": 860.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 사달산",
+  "obsid": "2075",
+  "lat": 37.57,
+  "lon": 128.78,
+  "altitudeM": 820.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 두타산",
+  "obsid": "2076",
+  "lat": 37.59,
+  "lon": 128.62,
+  "altitudeM": 992.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 술이봉",
+  "obsid": "2077",
+  "lat": 37.48,
+  "lon": 128.26,
+  "altitudeM": 770.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 도마니골",
+  "obsid": "2078",
+  "lat": 37.34,
+  "lon": 128.26,
+  "altitudeM": 795.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 화절령",
+  "obsid": "2079",
+  "lat": 37.19,
+  "lon": 128.8,
+  "altitudeM": 1100.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 기추목이",
+  "obsid": "2080",
+  "lat": 37.48,
+  "lon": 128.89,
+  "altitudeM": 790.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "동해 앞재넘어골",
+  "obsid": "2081",
+  "lat": 37.5,
+  "lon": 129.08,
+  "altitudeM": 265.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 멍에산",
+  "obsid": "2082",
+  "lat": 37.34,
+  "lon": 128.88,
+  "altitudeM": 1021.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "태백 풀장골",
+  "obsid": "2083",
+  "lat": 37.12,
+  "lon": 128.99,
+  "altitudeM": 765.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "고성 마산",
+  "obsid": "2084",
+  "lat": 38.32,
+  "lon": 128.4,
+  "altitudeM": 532.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 두리봉",
+  "obsid": "2085",
+  "lat": 37.24,
+  "lon": 129.15,
+  "altitudeM": 637.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 북암령",
+  "obsid": "2086",
+  "lat": 38.04,
+  "lon": 128.52,
+  "altitudeM": 525.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 만월산",
+  "obsid": "2087",
+  "lat": 37.97,
+  "lon": 128.69,
+  "altitudeM": 280.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 정족산",
+  "obsid": "2088",
+  "lat": 37.97,
+  "lon": 128.63,
+  "altitudeM": 375.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 백운산",
+  "obsid": "2091",
+  "lat": 37.15,
+  "lon": 128.83,
+  "altitudeM": 936.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 응봉산",
+  "obsid": "2092",
+  "lat": 37.17,
+  "lon": 128.56,
+  "altitudeM": 860.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "원주 백운산 자연휴양림",
+  "obsid": "2093",
+  "lat": 37.26,
+  "lon": 127.95,
+  "altitudeM": 349.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 상원산",
+  "obsid": "2094",
+  "lat": 37.52,
+  "lon": 128.66,
+  "altitudeM": 869.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 병두산",
+  "obsid": "2096",
+  "lat": 37.64,
+  "lon": 128.61,
+  "altitudeM": 990.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 백적산",
+  "obsid": "2097",
+  "lat": 37.57,
+  "lon": 128.5,
+  "altitudeM": 800.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 삼봉 자연휴양림",
+  "obsid": "2098",
+  "lat": 37.85,
+  "lon": 128.46,
+  "altitudeM": 425.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 공골",
+  "obsid": "2099",
+  "lat": 37.64,
+  "lon": 127.84,
+  "altitudeM": 623.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "화천 대성산",
+  "obsid": "2510",
+  "lat": 38.2,
+  "lon": 127.64,
+  "altitudeM": 460.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 말골고개(가리산)",
+  "obsid": "2511",
+  "lat": 37.8,
+  "lon": 127.93,
+  "altitudeM": 428.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 등골산",
+  "obsid": "2512",
+  "lat": 37.9,
+  "lon": 127.98,
+  "altitudeM": 530.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 가락재(가리산)",
+  "obsid": "2513",
+  "lat": 37.83,
+  "lon": 127.87,
+  "altitudeM": 600.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양구 고방산",
+  "obsid": "2514",
+  "lat": 38.22,
+  "lon": 127.99,
+  "altitudeM": 494.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "철원 남북산림협력센터",
+  "obsid": "2687",
+  "lat": 38.23,
+  "lon": 127.16,
+  "altitudeM": 157.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "국립춘천숲체원",
+  "obsid": "2688",
+  "lat": 37.98,
+  "lon": 127.77,
+  "altitudeM": 239.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "원주 수리봉",
+  "obsid": "2689",
+  "lat": 37.2,
+  "lon": 127.9,
+  "altitudeM": 392.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 운두령",
+  "obsid": "2690",
+  "lat": 37.7,
+  "lon": 128.42,
+  "altitudeM": 832.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 백두대간트레일",
+  "obsid": "2691",
+  "lat": 37.77,
+  "lon": 128.38,
+  "altitudeM": 622.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 금물산",
+  "obsid": "2692",
+  "lat": 37.54,
+  "lon": 127.83,
+  "altitudeM": 464.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 망전산",
+  "obsid": "2693",
+  "lat": 37.79,
+  "lon": 128.17,
+  "altitudeM": 374.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 덕세산",
+  "obsid": "2694",
+  "lat": 38.23,
+  "lon": 128.15,
+  "altitudeM": 709.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 석병산",
+  "obsid": "2695",
+  "lat": 37.61,
+  "lon": 128.86,
+  "altitudeM": 637.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 장리산",
+  "obsid": "2696",
+  "lat": 37.99,
+  "lon": 128.6,
+  "altitudeM": 274.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 응복산",
+  "obsid": "2697",
+  "lat": 37.92,
+  "lon": 128.62,
+  "altitudeM": 445.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 청옥산",
+  "obsid": "2698",
+  "lat": 37.41,
+  "lon": 128.49,
+  "altitudeM": 968.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 민백산",
+  "obsid": "2699",
+  "lat": 37.09,
+  "lon": 128.83,
+  "altitudeM": 1015.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 구룡산",
+  "obsid": "2745",
+  "lat": 37.38,
+  "lon": 128.21,
+  "altitudeM": 799.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 전평산",
+  "obsid": "2746",
+  "lat": 37.43,
+  "lon": 128.87,
+  "altitudeM": 931.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 궁방산",
+  "obsid": "2747",
+  "lat": 37.31,
+  "lon": 129.2,
+  "altitudeM": 327.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 건마람재",
+  "obsid": "2748",
+  "lat": 37.38,
+  "lon": 128.95,
+  "altitudeM": 966.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "태백 비단봉",
+  "obsid": "2749",
+  "lat": 37.2,
+  "lon": 128.93,
+  "altitudeM": 1056.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 곤신봉",
+  "obsid": "2890",
+  "lat": 37.75,
+  "lon": 128.77,
+  "altitudeM": 704.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 한석산",
+  "obsid": "2891",
+  "lat": 38.05,
+  "lon": 128.26,
+  "altitudeM": 1114.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "인제 가득봉",
+  "obsid": "2892",
+  "lat": 37.85,
+  "lon": 128.19,
+  "altitudeM": 979.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 불발령",
+  "obsid": "2893",
+  "lat": 37.7,
+  "lon": 128.32,
+  "altitudeM": 1013.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "양양 감투봉",
+  "obsid": "2894",
+  "lat": 37.96,
+  "lon": 128.59,
+  "altitudeM": 851.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 전후재",
+  "obsid": "2895",
+  "lat": 37.84,
+  "lon": 128.63,
+  "altitudeM": 798.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 사기막",
+  "obsid": "2896",
+  "lat": 37.77,
+  "lon": 128.74,
+  "altitudeM": 454.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 제왕산",
+  "obsid": "2897",
+  "lat": 37.68,
+  "lon": 128.79,
+  "altitudeM": 783.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "강릉 만덕봉",
+  "obsid": "2898",
+  "lat": 37.61,
+  "lon": 128.9,
+  "altitudeM": 783.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 선자령",
+  "obsid": "2899",
+  "lat": 37.72,
+  "lon": 128.74,
+  "altitudeM": 1154.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 가리왕산",
+  "obsid": "2900",
+  "lat": 37.46,
+  "lon": 128.59,
+  "altitudeM": 1066.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 봉화치",
+  "obsid": "2901",
+  "lat": 37.44,
+  "lon": 128.69,
+  "altitudeM": 948.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "정선 갈고개",
+  "obsid": "2902",
+  "lat": 37.52,
+  "lon": 128.93,
+  "altitudeM": 864.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 덕항산",
+  "obsid": "2903",
+  "lat": 37.33,
+  "lon": 129.01,
+  "altitudeM": 1007.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "태백 함백산",
+  "obsid": "2904",
+  "lat": 37.16,
+  "lon": 128.91,
+  "altitudeM": 1556.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 사금산",
+  "obsid": "2905",
+  "lat": 37.2,
+  "lon": 129.16,
+  "altitudeM": 1082.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "영월 배향산",
+  "obsid": "2906",
+  "lat": 37.3,
+  "lon": 128.12,
+  "altitudeM": 753.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 사자산",
+  "obsid": "2907",
+  "lat": 37.42,
+  "lon": 128.25,
+  "altitudeM": 810.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "평창 남병산",
+  "obsid": "2908",
+  "lat": 37.41,
+  "lon": 128.43,
+  "altitudeM": 874.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "홍천 대학산",
+  "obsid": "2909",
+  "lat": 37.66,
+  "lon": 128.07,
+  "altitudeM": 565.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 가리산",
+  "obsid": "2911",
+  "lat": 37.85,
+  "lon": 128.92,
+  "altitudeM": 737.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "춘천 계관산",
+  "obsid": "2912",
+  "lat": 37.89,
+  "lon": 127.61,
+  "altitudeM": 635.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 상서기",
+  "obsid": "2913",
+  "lat": 37.22,
+  "lon": 129.26,
+  "altitudeM": 545.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 소공령",
+  "obsid": "2914",
+  "lat": 37.22,
+  "lon": 129.31,
+  "altitudeM": 358.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 헬기장",
+  "obsid": "2915",
+  "lat": 37.21,
+  "lon": 129.3,
+  "altitudeM": 276.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 검봉산",
+  "obsid": "2916",
+  "lat": 37.23,
+  "lon": 129.28,
+  "altitudeM": 576.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "삼척 중봉산",
+  "obsid": "2917",
+  "lat": 37.41,
+  "lon": 128.9,
+  "altitudeM": 997.0
+ },
+ {
+  "region": "강원도",
+  "mountain": "횡성 청태산 자연휴양림",
+  "obsid": "2918",
+  "lat": 37.52,
+  "lon": 128.29,
+  "altitudeM": 542.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "괴산 구석산",
+  "obsid": "3022",
+  "lat": 36.75,
+  "lon": 127.66,
+  "altitudeM": 218.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "음성 개미산",
+  "obsid": "3023",
+  "lat": 36.87,
+  "lon": 127.62,
+  "altitudeM": 231.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "충주 장병산",
+  "obsid": "3024",
+  "lat": 37.11,
+  "lon": 127.96,
+  "altitudeM": 246.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "충주 오청산",
+  "obsid": "3025",
+  "lat": 37.13,
+  "lon": 127.97,
+  "altitudeM": 413.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "충주 마미산",
+  "obsid": "3026",
+  "lat": 37.07,
+  "lon": 128.07,
+  "altitudeM": 430.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "제천 갱승갱이재",
+  "obsid": "3027",
+  "lat": 37.17,
+  "lon": 127.97,
+  "altitudeM": 430.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 겸암산",
+  "obsid": "3028",
+  "lat": 37.05,
+  "lon": 128.48,
+  "altitudeM": 571.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 밤재",
+  "obsid": "3029",
+  "lat": 37.07,
+  "lon": 128.51,
+  "altitudeM": 363.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 청년봉",
+  "obsid": "3030",
+  "lat": 37.11,
+  "lon": 128.49,
+  "altitudeM": 700.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 삼태산",
+  "obsid": "3031",
+  "lat": 37.09,
+  "lon": 128.37,
+  "altitudeM": 363.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "괴산 갑산",
+  "obsid": "3032",
+  "lat": 36.87,
+  "lon": 127.75,
+  "altitudeM": 359.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "보은 가덕산",
+  "obsid": "3033",
+  "lat": 36.52,
+  "lon": 127.57,
+  "altitudeM": 324.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "음성 칠성산",
+  "obsid": "3034",
+  "lat": 37.01,
+  "lon": 127.62,
+  "altitudeM": 233.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "음성 수정산",
+  "obsid": "3035",
+  "lat": 36.93,
+  "lon": 127.75,
+  "altitudeM": 207.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "청주 샘봉산",
+  "obsid": "3037",
+  "lat": 36.47,
+  "lon": 127.54,
+  "altitudeM": 296.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "청주 상당산성 자연휴양림",
+  "obsid": "3038",
+  "lat": 36.67,
+  "lon": 127.54,
+  "altitudeM": 260.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "연천 마차산",
+  "obsid": "3039",
+  "lat": 37.96,
+  "lon": 127.03,
+  "altitudeM": 253.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "안성 무이산",
+  "obsid": "3040",
+  "lat": 36.96,
+  "lon": 127.38,
+  "altitudeM": 284.0
+ },
+ {
+  "region": "경기도",
+  "mountain": "가평 화야산",
+  "obsid": "3041",
+  "lat": 37.66,
+  "lon": 127.43,
+  "altitudeM": 372.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 용바위봉",
+  "obsid": "3890",
+  "lat": 37.01,
+  "lon": 128.25,
+  "altitudeM": 456.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "제천 장석산",
+  "obsid": "3891",
+  "lat": 37.09,
+  "lon": 128.18,
+  "altitudeM": 403.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "충주 천등산",
+  "obsid": "3892",
+  "lat": 37.09,
+  "lon": 127.99,
+  "altitudeM": 128.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "음성 원통산",
+  "obsid": "3893",
+  "lat": 37.09,
+  "lon": 127.68,
+  "altitudeM": 323.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "괴산 박달산",
+  "obsid": "3894",
+  "lat": 36.81,
+  "lon": 127.92,
+  "altitudeM": 438.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "충주 남산",
+  "obsid": "3895",
+  "lat": 36.96,
+  "lon": 127.98,
+  "altitudeM": 553.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 도솔봉",
+  "obsid": "3896",
+  "lat": 36.85,
+  "lon": 128.42,
+  "altitudeM": 707.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "옥천 팔음산",
+  "obsid": "3897",
+  "lat": 36.35,
+  "lon": 127.88,
+  "altitudeM": 396.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "보은 금단산",
+  "obsid": "3898",
+  "lat": 36.61,
+  "lon": 127.79,
+  "altitudeM": 627.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "옥천 탑산",
+  "obsid": "3899",
+  "lat": 36.32,
+  "lon": 127.64,
+  "altitudeM": 362.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "영동 삼봉산",
+  "obsid": "3900",
+  "lat": 36.13,
+  "lon": 127.84,
+  "altitudeM": 649.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "괴산 대곡산",
+  "obsid": "3901",
+  "lat": 36.89,
+  "lon": 127.79,
+  "altitudeM": 264.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 태화산",
+  "obsid": "3902",
+  "lat": 37.09,
+  "lon": 128.47,
+  "altitudeM": 665.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "보은 염동산",
+  "obsid": "3903",
+  "lat": 36.49,
+  "lon": 127.64,
+  "altitudeM": 282.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "괴산 송인산",
+  "obsid": "3904",
+  "lat": 36.77,
+  "lon": 127.68,
+  "altitudeM": 434.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "진천 양천산",
+  "obsid": "3905",
+  "lat": 36.81,
+  "lon": 127.46,
+  "altitudeM": 232.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "진천 만뢰산",
+  "obsid": "3906",
+  "lat": 36.87,
+  "lon": 127.34,
+  "altitudeM": 264.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "단양 애뒤산",
+  "obsid": "3907",
+  "lat": 37.13,
+  "lon": 128.35,
+  "altitudeM": 422.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "제천 국사봉",
+  "obsid": "3908",
+  "lat": 37.06,
+  "lon": 128.11,
+  "altitudeM": 455.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "제천 가창산",
+  "obsid": "3909",
+  "lat": 37.11,
+  "lon": 128.3,
+  "altitudeM": 483.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "충주 적보산",
+  "obsid": "3910",
+  "lat": 36.87,
+  "lon": 127.96,
+  "altitudeM": 303.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "청주 오봉산",
+  "obsid": "3911",
+  "lat": 36.58,
+  "lon": 127.62,
+  "altitudeM": 228.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "청주 불당상봉",
+  "obsid": "3912",
+  "lat": 36.5,
+  "lon": 127.56,
+  "altitudeM": 420.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "옥천 암산",
+  "obsid": "3913",
+  "lat": 36.39,
+  "lon": 127.63,
+  "altitudeM": 386.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "옥천 거멍산",
+  "obsid": "3914",
+  "lat": 36.44,
+  "lon": 127.67,
+  "altitudeM": 363.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "보은 시루산",
+  "obsid": "3915",
+  "lat": 36.55,
+  "lon": 127.7,
+  "altitudeM": 362.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "옥천 금적산",
+  "obsid": "3916",
+  "lat": 36.39,
+  "lon": 127.7,
+  "altitudeM": 330.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "보은 삼승산",
+  "obsid": "3917",
+  "lat": 36.39,
+  "lon": 127.75,
+  "altitudeM": 242.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "보은 노성산",
+  "obsid": "3918",
+  "lat": 36.46,
+  "lon": 127.63,
+  "altitudeM": 314.0
+ },
+ {
+  "region": "충청북도",
+  "mountain": "제천 관봉",
+  "obsid": "3919",
+  "lat": 36.95,
+  "lon": 128.11,
+  "altitudeM": 197.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "금산 성주산",
+  "obsid": "4890",
+  "lat": 36.08,
+  "lon": 127.63,
+  "altitudeM": 466.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "부여 축융봉",
+  "obsid": "4891",
+  "lat": 36.33,
+  "lon": 126.78,
+  "altitudeM": 262.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 무성산",
+  "obsid": "4892",
+  "lat": 36.53,
+  "lon": 127.06,
+  "altitudeM": 324.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 국사봉",
+  "obsid": "4893",
+  "lat": 36.61,
+  "lon": 127.04,
+  "altitudeM": 406.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "아산 광덕산",
+  "obsid": "4894",
+  "lat": 36.69,
+  "lon": 127.02,
+  "altitudeM": 352.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "보령 오서산",
+  "obsid": "4895",
+  "lat": 36.46,
+  "lon": 126.67,
+  "altitudeM": 483.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "청양 비봉산",
+  "obsid": "4896",
+  "lat": 36.51,
+  "lon": 126.82,
+  "altitudeM": 308.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 장군산",
+  "obsid": "4897",
+  "lat": 36.47,
+  "lon": 127.19,
+  "altitudeM": 308.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "천안 국사봉",
+  "obsid": "4898",
+  "lat": 36.63,
+  "lon": 127.16,
+  "altitudeM": 350.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "논산 묘련봉",
+  "obsid": "4899",
+  "lat": 36.17,
+  "lon": 127.27,
+  "altitudeM": 323.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "금산 성치산",
+  "obsid": "4900",
+  "lat": 36.01,
+  "lon": 127.46,
+  "altitudeM": 307.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "금산 백암산",
+  "obsid": "4901",
+  "lat": 36.05,
+  "lon": 127.4,
+  "altitudeM": 385.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "청양 대덕봉",
+  "obsid": "4902",
+  "lat": 36.46,
+  "lon": 126.93,
+  "altitudeM": 230.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "아산 만경산",
+  "obsid": "4903",
+  "lat": 36.71,
+  "lon": 127.05,
+  "altitudeM": 350.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "금산 운하산",
+  "obsid": "4904",
+  "lat": 36.19,
+  "lon": 127.37,
+  "altitudeM": 331.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "청양 오봉산",
+  "obsid": "4905",
+  "lat": 36.42,
+  "lon": 126.75,
+  "altitudeM": 274.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "천안 개죽산",
+  "obsid": "4906",
+  "lat": 36.85,
+  "lon": 127.3,
+  "altitudeM": 391.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "천안 몽각산",
+  "obsid": "4907",
+  "lat": 36.83,
+  "lon": 127.34,
+  "altitudeM": 345.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 천태산",
+  "obsid": "4908",
+  "lat": 36.59,
+  "lon": 127.15,
+  "altitudeM": 204.0
+ },
+ {
+  "region": "세종특별자치시",
+  "mountain": "세종수목원",
+  "obsid": "4909",
+  "lat": 36.49,
+  "lon": 127.27,
+  "altitudeM": 45.0
+ },
+ {
+  "region": "세종특별자치시",
+  "mountain": "세종 관불산",
+  "obsid": "4910",
+  "lat": 36.57,
+  "lon": 127.21,
+  "altitudeM": 240.0
+ },
+ {
+  "region": "세종특별자치시",
+  "mountain": "세종 칠불산",
+  "obsid": "4911",
+  "lat": 36.49,
+  "lon": 127.35,
+  "altitudeM": 211.0
+ },
+ {
+  "region": "대전광역시",
+  "mountain": "대전 계족산",
+  "obsid": "4912",
+  "lat": 36.39,
+  "lon": 127.46,
+  "altitudeM": 335.0
+ },
+ {
+  "region": "대전광역시",
+  "mountain": "대전 보문산",
+  "obsid": "4913",
+  "lat": 36.29,
+  "lon": 127.42,
+  "altitudeM": 275.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 갈미봉",
+  "obsid": "4914",
+  "lat": 36.59,
+  "lon": 127.07,
+  "altitudeM": 276.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 까막봉",
+  "obsid": "4915",
+  "lat": 36.64,
+  "lon": 127.02,
+  "altitudeM": 467.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "보령 만수산",
+  "obsid": "4945",
+  "lat": 36.3,
+  "lon": 126.67,
+  "altitudeM": 222.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "청양 여주재",
+  "obsid": "4946",
+  "lat": 36.45,
+  "lon": 126.78,
+  "altitudeM": 171.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "서산 역마산",
+  "obsid": "4947",
+  "lat": 36.77,
+  "lon": 126.38,
+  "altitudeM": 130.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "공주 안산",
+  "obsid": "4948",
+  "lat": 36.4,
+  "lon": 127.21,
+  "altitudeM": 293.0
+ },
+ {
+  "region": "충청남도",
+  "mountain": "예산 봉수산",
+  "obsid": "4949",
+  "lat": 36.69,
+  "lon": 126.95,
+  "altitudeM": 293.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 청량산",
+  "obsid": "5890",
+  "lat": 36.0,
+  "lon": 127.73,
+  "altitudeM": 655.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "진안 고산",
+  "obsid": "5891",
+  "lat": 35.84,
+  "lon": 127.52,
+  "altitudeM": 593.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 강선대",
+  "obsid": "5892",
+  "lat": 36.01,
+  "lon": 127.63,
+  "altitudeM": 325.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 불당산",
+  "obsid": "5893",
+  "lat": 35.88,
+  "lon": 127.6,
+  "altitudeM": 561.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "장수 백운산",
+  "obsid": "5894",
+  "lat": 35.64,
+  "lon": 127.58,
+  "altitudeM": 667.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 삿갓봉",
+  "obsid": "5895",
+  "lat": 35.8,
+  "lon": 127.65,
+  "altitudeM": 605.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "정읍 칠보산",
+  "obsid": "5896",
+  "lat": 35.58,
+  "lon": 126.96,
+  "altitudeM": 221.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "고창 고산",
+  "obsid": "5897",
+  "lat": 35.33,
+  "lon": 126.63,
+  "altitudeM": 211.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "고창 방문산",
+  "obsid": "5898",
+  "lat": 35.44,
+  "lon": 126.72,
+  "altitudeM": 321.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "순창 추령봉",
+  "obsid": "5899",
+  "lat": 35.49,
+  "lon": 126.94,
+  "altitudeM": 415.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "완주 시루봉",
+  "obsid": "5900",
+  "lat": 36.07,
+  "lon": 127.28,
+  "altitudeM": 242.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "완주 실내봉",
+  "obsid": "5901",
+  "lat": 35.93,
+  "lon": 127.26,
+  "altitudeM": 430.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "완주 운장산",
+  "obsid": "5902",
+  "lat": 35.93,
+  "lon": 127.35,
+  "altitudeM": 564.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "완주 국사봉",
+  "obsid": "5903",
+  "lat": 35.77,
+  "lon": 127.22,
+  "altitudeM": 275.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "완주 남당산",
+  "obsid": "5904",
+  "lat": 36.09,
+  "lon": 127.23,
+  "altitudeM": 358.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "임실 지초봉",
+  "obsid": "5905",
+  "lat": 35.52,
+  "lon": 127.23,
+  "altitudeM": 452.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "장수 할미봉",
+  "obsid": "5906",
+  "lat": 35.74,
+  "lon": 127.66,
+  "altitudeM": 785.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "진안 성수산",
+  "obsid": "5907",
+  "lat": 35.62,
+  "lon": 127.45,
+  "altitudeM": 785.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 민주지산",
+  "obsid": "5908",
+  "lat": 36.01,
+  "lon": 127.85,
+  "altitudeM": 787.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 조항산",
+  "obsid": "5909",
+  "lat": 35.96,
+  "lon": 127.59,
+  "altitudeM": 667.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 덕유산",
+  "obsid": "5910",
+  "lat": 35.9,
+  "lon": 127.83,
+  "altitudeM": 921.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "장수 장안산",
+  "obsid": "5911",
+  "lat": 35.66,
+  "lon": 127.61,
+  "altitudeM": 788.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "남원 봉화산",
+  "obsid": "5912",
+  "lat": 35.55,
+  "lon": 127.58,
+  "altitudeM": 921.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "진안 덕태산",
+  "obsid": "5913",
+  "lat": 35.69,
+  "lon": 127.46,
+  "altitudeM": 908.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "진안 내동산",
+  "obsid": "5914",
+  "lat": 35.7,
+  "lon": 127.35,
+  "altitudeM": 584.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "정읍 상두산",
+  "obsid": "5915",
+  "lat": 35.66,
+  "lon": 127.06,
+  "altitudeM": 370.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "정읍 회문산",
+  "obsid": "5916",
+  "lat": 35.52,
+  "lon": 127.09,
+  "altitudeM": 612.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "순창 여분산",
+  "obsid": "5917",
+  "lat": 35.5,
+  "lon": 127.04,
+  "altitudeM": 453.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "순창 추월산",
+  "obsid": "5918",
+  "lat": 35.41,
+  "lon": 126.97,
+  "altitudeM": 645.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "고창 방장산(솔재)",
+  "obsid": "5919",
+  "lat": 35.4,
+  "lon": 126.72,
+  "altitudeM": 464.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "순창 치재산",
+  "obsid": "5946",
+  "lat": 35.46,
+  "lon": 127.01,
+  "altitudeM": 397.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "무주 선인봉",
+  "obsid": "5947",
+  "lat": 35.96,
+  "lon": 127.81,
+  "altitudeM": 574.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "장수 파발재(장안산)",
+  "obsid": "5948",
+  "lat": 35.6,
+  "lon": 127.55,
+  "altitudeM": 711.0
+ },
+ {
+  "region": "전라북도",
+  "mountain": "남원 서룡산",
+  "obsid": "5949",
+  "lat": 35.45,
+  "lon": 127.63,
+  "altitudeM": 655.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "순천 수이봉",
+  "obsid": "6000",
+  "lat": 35.05,
+  "lon": 127.48,
+  "altitudeM": 370.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "고흥 두방산",
+  "obsid": "6001",
+  "lat": 34.81,
+  "lon": 127.3,
+  "altitudeM": 330.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "화순 고비산",
+  "obsid": "6002",
+  "lat": 34.84,
+  "lon": 126.99,
+  "altitudeM": 310.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "곡성 곤방산",
+  "obsid": "6003",
+  "lat": 35.22,
+  "lon": 127.32,
+  "altitudeM": 534.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "영광 구수산",
+  "obsid": "6004",
+  "lat": 35.33,
+  "lon": 126.41,
+  "altitudeM": 244.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "진도 대곡산",
+  "obsid": "6005",
+  "lat": 34.46,
+  "lon": 126.27,
+  "altitudeM": 205.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "진도 여귀산",
+  "obsid": "6006",
+  "lat": 34.4,
+  "lon": 126.25,
+  "altitudeM": 229.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "화순 매봉산",
+  "obsid": "6007",
+  "lat": 34.99,
+  "lon": 127.15,
+  "altitudeM": 322.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "영광 운무산",
+  "obsid": "6008",
+  "lat": 35.2,
+  "lon": 126.52,
+  "altitudeM": 208.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장흥 용두산",
+  "obsid": "6009",
+  "lat": 34.76,
+  "lon": 126.94,
+  "altitudeM": 412.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장흥 생금산",
+  "obsid": "6010",
+  "lat": 34.78,
+  "lon": 126.8,
+  "altitudeM": 400.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "순천 망일봉",
+  "obsid": "6011",
+  "lat": 34.96,
+  "lon": 127.22,
+  "altitudeM": 280.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "순천 까망 몰랑이산",
+  "obsid": "6012",
+  "lat": 34.92,
+  "lon": 127.24,
+  "altitudeM": 461.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "보성 큰봉",
+  "obsid": "6013",
+  "lat": 34.87,
+  "lon": 127.26,
+  "altitudeM": 537.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "화순 두봉산",
+  "obsid": "6014",
+  "lat": 34.91,
+  "lon": 127.08,
+  "altitudeM": 417.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "강진 부용산",
+  "obsid": "6016",
+  "lat": 34.6,
+  "lon": 126.85,
+  "altitudeM": 353.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "고흥 적대봉",
+  "obsid": "6017",
+  "lat": 34.44,
+  "lon": 127.16,
+  "altitudeM": 116.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "고흥 벼락산",
+  "obsid": "6018",
+  "lat": 34.55,
+  "lon": 127.28,
+  "altitudeM": 312.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장흥 양암봉",
+  "obsid": "6019",
+  "lat": 34.54,
+  "lon": 126.89,
+  "altitudeM": 256.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "진도 지력산",
+  "obsid": "6020",
+  "lat": 34.45,
+  "lon": 126.14,
+  "altitudeM": 197.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "해남 윤도산",
+  "obsid": "6021",
+  "lat": 34.32,
+  "lon": 126.59,
+  "altitudeM": 216.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "순천 제석산",
+  "obsid": "6892",
+  "lat": 34.87,
+  "lon": 127.38,
+  "altitudeM": 437.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "완도 백운봉",
+  "obsid": "6893",
+  "lat": 34.36,
+  "lon": 126.67,
+  "altitudeM": 367.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장흥 옥녀봉",
+  "obsid": "6894",
+  "lat": 34.78,
+  "lon": 126.85,
+  "altitudeM": 302.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "화순 모후산",
+  "obsid": "6895",
+  "lat": 35.04,
+  "lon": 127.17,
+  "altitudeM": 606.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "순천 금전산",
+  "obsid": "6896",
+  "lat": 34.92,
+  "lon": 127.36,
+  "altitudeM": 435.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "보성 옥녀봉",
+  "obsid": "6897",
+  "lat": 34.94,
+  "lon": 127.18,
+  "altitudeM": 151.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장성 방장산",
+  "obsid": "6900",
+  "lat": 35.46,
+  "lon": 126.77,
+  "altitudeM": 437.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장성 문수산",
+  "obsid": "6901",
+  "lat": 35.36,
+  "lon": 126.72,
+  "altitudeM": 435.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "강진 서기산",
+  "obsid": "6902",
+  "lat": 34.64,
+  "lon": 126.71,
+  "altitudeM": 222.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "해남 달마산",
+  "obsid": "6903",
+  "lat": 34.4,
+  "lon": 126.6,
+  "altitudeM": 196.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장흥 가지산",
+  "obsid": "6904",
+  "lat": 34.83,
+  "lon": 126.89,
+  "altitudeM": 350.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "곡성 봉두산",
+  "obsid": "6905",
+  "lat": 35.15,
+  "lon": 127.4,
+  "altitudeM": 358.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "구례 솔봉",
+  "obsid": "6906",
+  "lat": 35.16,
+  "lon": 127.49,
+  "altitudeM": 453.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "여수 봉황산",
+  "obsid": "6907",
+  "lat": 34.62,
+  "lon": 127.77,
+  "altitudeM": 372.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "보성 제암산",
+  "obsid": "6908",
+  "lat": 34.69,
+  "lon": 127.01,
+  "altitudeM": 475.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "보성 봉화산",
+  "obsid": "6909",
+  "lat": 34.74,
+  "lon": 127.11,
+  "altitudeM": 463.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "나주 농암산",
+  "obsid": "6912",
+  "lat": 34.89,
+  "lon": 126.79,
+  "altitudeM": 239.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "함평 고산봉",
+  "obsid": "6913",
+  "lat": 35.12,
+  "lon": 126.56,
+  "altitudeM": 210.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "장성 병풍산",
+  "obsid": "6914",
+  "lat": 35.33,
+  "lon": 126.85,
+  "altitudeM": 529.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "순천 고동산",
+  "obsid": "6915",
+  "lat": 34.94,
+  "lon": 127.31,
+  "altitudeM": 686.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "화순 용암산",
+  "obsid": "6916",
+  "lat": 34.94,
+  "lon": 127.03,
+  "altitudeM": 404.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "보성 초암산",
+  "obsid": "6917",
+  "lat": 34.84,
+  "lon": 127.21,
+  "altitudeM": 499.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "보성 천봉산",
+  "obsid": "6918",
+  "lat": 34.94,
+  "lon": 127.12,
+  "altitudeM": 384.0
+ },
+ {
+  "region": "전라남도",
+  "mountain": "광양 백운산(노랭이봉)",
+  "obsid": "6919",
+  "lat": 35.04,
+  "lon": 127.65,
+  "altitudeM": 557.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 묘봉",
+  "obsid": "7000",
+  "lat": 37.08,
+  "lon": 129.14,
+  "altitudeM": 990.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 미림산",
+  "obsid": "7001",
+  "lat": 36.85,
+  "lon": 128.93,
+  "altitudeM": 594.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 가부재",
+  "obsid": "7002",
+  "lat": 36.97,
+  "lon": 128.85,
+  "altitudeM": 880.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 문수산",
+  "obsid": "7003",
+  "lat": 37.0,
+  "lon": 128.81,
+  "altitudeM": 594.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 옥석산",
+  "obsid": "7004",
+  "lat": 37.04,
+  "lon": 128.77,
+  "altitudeM": 980.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 예배령",
+  "obsid": "7005",
+  "lat": 36.99,
+  "lon": 128.78,
+  "altitudeM": 777.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 조산봉",
+  "obsid": "7006",
+  "lat": 36.83,
+  "lon": 129.02,
+  "altitudeM": 723.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 구룡산",
+  "obsid": "7007",
+  "lat": 37.05,
+  "lon": 128.8,
+  "altitudeM": 915.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영주 자구산",
+  "obsid": "7008",
+  "lat": 36.82,
+  "lon": 128.47,
+  "altitudeM": 678.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "문경 조항령",
+  "obsid": "7009",
+  "lat": 36.74,
+  "lon": 128.18,
+  "altitudeM": 696.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "상주 기양산",
+  "obsid": "7010",
+  "lat": 36.3,
+  "lon": 128.14,
+  "altitudeM": 261.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "청송 구암산",
+  "obsid": "7011",
+  "lat": 36.29,
+  "lon": 129.15,
+  "altitudeM": 497.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "군위 매봉",
+  "obsid": "7012",
+  "lat": 36.21,
+  "lon": 128.84,
+  "altitudeM": 581.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "김천 연석봉",
+  "obsid": "7013",
+  "lat": 35.98,
+  "lon": 128.11,
+  "altitudeM": 575.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "고령 문수봉",
+  "obsid": "7014",
+  "lat": 35.76,
+  "lon": 128.2,
+  "altitudeM": 392.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "문경 매봉",
+  "obsid": "7015",
+  "lat": 36.79,
+  "lon": 128.36,
+  "altitudeM": 804.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 등운산",
+  "obsid": "7016",
+  "lat": 36.64,
+  "lon": 129.38,
+  "altitudeM": 364.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 바데산",
+  "obsid": "7017",
+  "lat": 36.33,
+  "lon": 129.29,
+  "altitudeM": 325.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 금장산",
+  "obsid": "7018",
+  "lat": 36.77,
+  "lon": 129.28,
+  "altitudeM": 542.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "청송 면봉산",
+  "obsid": "7019",
+  "lat": 36.2,
+  "lon": 129.02,
+  "altitudeM": 653.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "김천 송곡령",
+  "obsid": "7020",
+  "lat": 35.84,
+  "lon": 128.0,
+  "altitudeM": 921.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "상주 백화산",
+  "obsid": "7021",
+  "lat": 36.34,
+  "lon": 128.03,
+  "altitudeM": 470.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "김천 월매산",
+  "obsid": "7022",
+  "lat": 35.9,
+  "lon": 127.97,
+  "altitudeM": 458.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 진조산",
+  "obsid": "7023",
+  "lat": 36.96,
+  "lon": 129.17,
+  "altitudeM": 745.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 대령산",
+  "obsid": "7024",
+  "lat": 36.87,
+  "lon": 129.33,
+  "altitudeM": 415.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 늦재",
+  "obsid": "7025",
+  "lat": 37.02,
+  "lon": 128.98,
+  "altitudeM": 879.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 비룡산",
+  "obsid": "7026",
+  "lat": 36.96,
+  "lon": 129.01,
+  "altitudeM": 517.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 횡악산",
+  "obsid": "7027",
+  "lat": 36.92,
+  "lon": 129.1,
+  "altitudeM": 618.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 죽미산",
+  "obsid": "7028",
+  "lat": 36.9,
+  "lon": 129.05,
+  "altitudeM": 715.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영주 흰봉산",
+  "obsid": "7029",
+  "lat": 36.86,
+  "lon": 128.47,
+  "altitudeM": 491.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 오미산",
+  "obsid": "7030",
+  "lat": 37.02,
+  "lon": 129.12,
+  "altitudeM": 1006.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 대봉산",
+  "obsid": "7031",
+  "lat": 36.59,
+  "lon": 129.35,
+  "altitudeM": 280.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 칠보산",
+  "obsid": "7032",
+  "lat": 36.65,
+  "lon": 129.34,
+  "altitudeM": 275.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 조비산",
+  "obsid": "7033",
+  "lat": 36.67,
+  "lon": 129.23,
+  "altitudeM": 671.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 추령",
+  "obsid": "7034",
+  "lat": 36.73,
+  "lon": 129.19,
+  "altitudeM": 472.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "문경 장성봉",
+  "obsid": "7035",
+  "lat": 36.68,
+  "lon": 127.96,
+  "altitudeM": 390.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "문경 대야산",
+  "obsid": "7036",
+  "lat": 36.66,
+  "lon": 127.96,
+  "altitudeM": 419.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 일월산",
+  "obsid": "7037",
+  "lat": 36.83,
+  "lon": 129.09,
+  "altitudeM": 762.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 포태봉",
+  "obsid": "7038",
+  "lat": 36.58,
+  "lon": 129.11,
+  "altitudeM": 432.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 한티재",
+  "obsid": "7039",
+  "lat": 36.75,
+  "lon": 129.17,
+  "altitudeM": 471.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 울련산",
+  "obsid": "7040",
+  "lat": 36.78,
+  "lon": 129.24,
+  "altitudeM": 729.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 추산",
+  "obsid": "7041",
+  "lat": 36.6,
+  "lon": 129.2,
+  "altitudeM": 566.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 흥림산",
+  "obsid": "7042",
+  "lat": 36.72,
+  "lon": 129.05,
+  "altitudeM": 495.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 삼승령",
+  "obsid": "7043",
+  "lat": 36.68,
+  "lon": 129.27,
+  "altitudeM": 669.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "의성 공수골",
+  "obsid": "7044",
+  "lat": 36.3,
+  "lon": 128.84,
+  "altitudeM": 411.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 매봉(비룡산)",
+  "obsid": "7045",
+  "lat": 37.0,
+  "lon": 129.04,
+  "altitudeM": 1018.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "청송 삼자현",
+  "obsid": "7046",
+  "lat": 36.31,
+  "lon": 129.04,
+  "altitudeM": 530.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "청송 병풍산",
+  "obsid": "7047",
+  "lat": 36.24,
+  "lon": 129.18,
+  "altitudeM": 700.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 우렁산",
+  "obsid": "7048",
+  "lat": 36.8,
+  "lon": 129.26,
+  "altitudeM": 511.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 서항목재",
+  "obsid": "7049",
+  "lat": 36.5,
+  "lon": 129.27,
+  "altitudeM": 350.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 개구석산",
+  "obsid": "7050",
+  "lat": 36.7,
+  "lon": 129.16,
+  "altitudeM": 504.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 답운재",
+  "obsid": "7051",
+  "lat": 36.93,
+  "lon": 129.16,
+  "altitudeM": 512.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 기린봉",
+  "obsid": "7052",
+  "lat": 36.67,
+  "lon": 129.36,
+  "altitudeM": 476.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "상주 안심산",
+  "obsid": "7053",
+  "lat": 36.38,
+  "lon": 127.99,
+  "altitudeM": 310.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "안동 이면산",
+  "obsid": "7054",
+  "lat": 36.61,
+  "lon": 128.92,
+  "altitudeM": 404.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "안동 약산",
+  "obsid": "7055",
+  "lat": 36.5,
+  "lon": 128.88,
+  "altitudeM": 250.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "청도 비슬산",
+  "obsid": "7056",
+  "lat": 35.68,
+  "lon": 128.54,
+  "altitudeM": 682.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "김천 난함산",
+  "obsid": "7057",
+  "lat": 36.19,
+  "lon": 128.06,
+  "altitudeM": 687.0
+ },
+ {
+  "region": "대구광역시",
+  "mountain": "군위 화산",
+  "obsid": "7058",
+  "lat": 36.09,
+  "lon": 128.78,
+  "altitudeM": 668.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 안일왕산",
+  "obsid": "7059",
+  "lat": 37.02,
+  "lon": 129.23,
+  "altitudeM": 711.0
+ },
+ {
+  "region": "부산광역시",
+  "mountain": "부산 달음산",
+  "obsid": "7060",
+  "lat": 35.3,
+  "lon": 129.19,
+  "altitudeM": 277.0
+ },
+ {
+  "region": "대구광역시",
+  "mountain": "대구 초례봉",
+  "obsid": "7061",
+  "lat": 35.91,
+  "lon": 128.72,
+  "altitudeM": 211.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 청옥산",
+  "obsid": "7891",
+  "lat": 37.04,
+  "lon": 128.96,
+  "altitudeM": 1279.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 큰재",
+  "obsid": "7892",
+  "lat": 36.95,
+  "lon": 128.96,
+  "altitudeM": 809.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 통고산",
+  "obsid": "7893",
+  "lat": 36.89,
+  "lon": 129.19,
+  "altitudeM": 1070.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 가재미재",
+  "obsid": "7894",
+  "lat": 36.77,
+  "lon": 129.37,
+  "altitudeM": 367.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 아구산",
+  "obsid": "7895",
+  "lat": 36.99,
+  "lon": 129.28,
+  "altitudeM": 646.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "봉화 장군봉",
+  "obsid": "7896",
+  "lat": 36.85,
+  "lon": 129.08,
+  "altitudeM": 1135.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 함박산",
+  "obsid": "7897",
+  "lat": 36.67,
+  "lon": 129.08,
+  "altitudeM": 579.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 명동산",
+  "obsid": "7898",
+  "lat": 36.51,
+  "lon": 129.24,
+  "altitudeM": 812.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "안동 용바위",
+  "obsid": "7899",
+  "lat": 36.56,
+  "lon": 128.9,
+  "altitudeM": 399.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "청송 감연산",
+  "obsid": "7900",
+  "lat": 36.37,
+  "lon": 129.05,
+  "altitudeM": 566.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 독경산",
+  "obsid": "7901",
+  "lat": 36.61,
+  "lon": 129.24,
+  "altitudeM": 685.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영덕 삿갓봉",
+  "obsid": "7902",
+  "lat": 36.41,
+  "lon": 129.31,
+  "altitudeM": 272.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "포항 내연산",
+  "obsid": "7903",
+  "lat": 36.22,
+  "lon": 129.26,
+  "altitudeM": 699.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "포항 조항산",
+  "obsid": "7904",
+  "lat": 35.97,
+  "lon": 129.47,
+  "altitudeM": 216.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "의성 주월산",
+  "obsid": "7905",
+  "lat": 36.31,
+  "lon": 128.8,
+  "altitudeM": 439.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "안동 수운산",
+  "obsid": "7906",
+  "lat": 36.47,
+  "lon": 128.58,
+  "altitudeM": 366.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영양 검마산",
+  "obsid": "7907",
+  "lat": 36.74,
+  "lon": 129.25,
+  "altitudeM": 902.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "예천 가재봉",
+  "obsid": "7908",
+  "lat": 36.81,
+  "lon": 128.43,
+  "altitudeM": 812.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 백병산전곡리",
+  "obsid": "7909",
+  "lat": 37.0,
+  "lon": 129.15,
+  "altitudeM": 943.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "성주 박석산",
+  "obsid": "7913",
+  "lat": 35.93,
+  "lon": 128.05,
+  "altitudeM": 711.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "경산 삼성산",
+  "obsid": "7914",
+  "lat": 35.75,
+  "lon": 128.82,
+  "altitudeM": 436.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "경산 발백산",
+  "obsid": "7915",
+  "lat": 35.83,
+  "lon": 128.95,
+  "altitudeM": 505.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "구미 비봉산",
+  "obsid": "7916",
+  "lat": 36.28,
+  "lon": 128.29,
+  "altitudeM": 318.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "울진 백병산",
+  "obsid": "7917",
+  "lat": 37.03,
+  "lon": 129.17,
+  "altitudeM": 1036.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영주 용암산(한천시험림)",
+  "obsid": "7918",
+  "lat": 36.84,
+  "lon": 128.53,
+  "altitudeM": 332.0
+ },
+ {
+  "region": "경상북도",
+  "mountain": "영주 천부산",
+  "obsid": "7919",
+  "lat": 36.82,
+  "lon": 128.5,
+  "altitudeM": 742.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거제 북병산",
+  "obsid": "8000",
+  "lat": 34.82,
+  "lon": 128.67,
+  "altitudeM": 282.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "통영 도덕산",
+  "obsid": "8001",
+  "lat": 34.92,
+  "lon": 128.37,
+  "altitudeM": 219.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 기백산",
+  "obsid": "8002",
+  "lat": 35.72,
+  "lon": 127.77,
+  "altitudeM": 1218.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거제 노자산",
+  "obsid": "8003",
+  "lat": 34.79,
+  "lon": 128.64,
+  "altitudeM": 302.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "산청 철마산",
+  "obsid": "8004",
+  "lat": 35.53,
+  "lon": 127.88,
+  "altitudeM": 587.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "함양 용추자연휴양림",
+  "obsid": "8005",
+  "lat": 35.71,
+  "lon": 127.75,
+  "altitudeM": 756.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "함양 대봉산",
+  "obsid": "8006",
+  "lat": 35.58,
+  "lon": 127.7,
+  "altitudeM": 858.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 수망령",
+  "obsid": "8007",
+  "lat": 35.73,
+  "lon": 127.74,
+  "altitudeM": 913.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 금원산자연휴양림",
+  "obsid": "8008",
+  "lat": 35.72,
+  "lon": 127.78,
+  "altitudeM": 807.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 중우박골",
+  "obsid": "8009",
+  "lat": 35.74,
+  "lon": 127.78,
+  "altitudeM": 758.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "고성 갈모봉",
+  "obsid": "8010",
+  "lat": 34.97,
+  "lon": 128.27,
+  "altitudeM": 240.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "양산 금오산",
+  "obsid": "8011",
+  "lat": 35.44,
+  "lon": 128.9,
+  "altitudeM": 594.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거제 고산자봉",
+  "obsid": "8890",
+  "lat": 34.86,
+  "lon": 128.62,
+  "altitudeM": 375.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "하동 형제봉",
+  "obsid": "8891",
+  "lat": 35.21,
+  "lon": 127.68,
+  "altitudeM": 1093.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "하동 묵계재",
+  "obsid": "8892",
+  "lat": 35.2,
+  "lon": 127.75,
+  "altitudeM": 680.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "산청 왕등재",
+  "obsid": "8893",
+  "lat": 35.4,
+  "lon": 127.78,
+  "altitudeM": 590.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "함양 법화산",
+  "obsid": "8894",
+  "lat": 35.45,
+  "lon": 127.71,
+  "altitudeM": 691.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "고성 향로봉",
+  "obsid": "8895",
+  "lat": 34.97,
+  "lon": 128.17,
+  "altitudeM": 375.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 단지봉",
+  "obsid": "8896",
+  "lat": 35.8,
+  "lon": 127.99,
+  "altitudeM": 782.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "남해 대기봉",
+  "obsid": "8897",
+  "lat": 34.75,
+  "lon": 128.02,
+  "altitudeM": 283.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "창녕 영취산(병봉)``",
+  "obsid": "8898",
+  "lat": 35.48,
+  "lon": 128.57,
+  "altitudeM": 567.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "양산 영취산(시살등)",
+  "obsid": "8899",
+  "lat": 35.48,
+  "lon": 129.0,
+  "altitudeM": 777.0
+ },
+ {
+  "region": "울산광역시",
+  "mountain": "울산 능동산",
+  "obsid": "8900",
+  "lat": 35.58,
+  "lon": 129.01,
+  "altitudeM": 939.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "함안 천주산",
+  "obsid": "8901",
+  "lat": 35.27,
+  "lon": 128.59,
+  "altitudeM": 501.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "사천 실봉산",
+  "obsid": "8902",
+  "lat": 35.13,
+  "lon": 128.07,
+  "altitudeM": 99.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "산청 둔철산",
+  "obsid": "8903",
+  "lat": 35.38,
+  "lon": 127.98,
+  "altitudeM": 522.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "의령 한우산",
+  "obsid": "8904",
+  "lat": 35.41,
+  "lon": 128.21,
+  "altitudeM": 702.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "김해 불모산",
+  "obsid": "8905",
+  "lat": 35.2,
+  "lon": 128.76,
+  "altitudeM": 482.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 월봉산",
+  "obsid": "8906",
+  "lat": 35.74,
+  "lon": 127.72,
+  "altitudeM": 874.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 금원산",
+  "obsid": "8907",
+  "lat": 35.71,
+  "lon": 127.8,
+  "altitudeM": 732.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "산청 황매산",
+  "obsid": "8908",
+  "lat": 35.48,
+  "lon": 127.98,
+  "altitudeM": 930.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "의령 장등산",
+  "obsid": "8909",
+  "lat": 35.46,
+  "lon": 128.28,
+  "altitudeM": 326.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "양산 천성산",
+  "obsid": "8911",
+  "lat": 35.42,
+  "lon": 129.09,
+  "altitudeM": 444.0
+ },
+ {
+  "region": "울산광역시",
+  "mountain": "울주 백운산",
+  "obsid": "8912",
+  "lat": 35.67,
+  "lon": 129.12,
+  "altitudeM": 506.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "양산 대운산",
+  "obsid": "8913",
+  "lat": 35.41,
+  "lon": 129.2,
+  "altitudeM": 548.0
+ },
+ {
+  "region": "부산광역시",
+  "mountain": "부산 양달산",
+  "obsid": "8914",
+  "lat": 35.24,
+  "lon": 129.19,
+  "altitudeM": 295.0
+ },
+ {
+  "region": "부산광역시",
+  "mountain": "부산 백양산",
+  "obsid": "8915",
+  "lat": 35.18,
+  "lon": 129.02,
+  "altitudeM": 583.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "진주 월아산",
+  "obsid": "8916",
+  "lat": 35.21,
+  "lon": 128.17,
+  "altitudeM": 165.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "창원 평지산",
+  "obsid": "8917",
+  "lat": 35.16,
+  "lon": 128.45,
+  "altitudeM": 475.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "함양 삼봉산",
+  "obsid": "8918",
+  "lat": 35.46,
+  "lon": 127.68,
+  "altitudeM": 579.0
+ },
+ {
+  "region": "경상남도",
+  "mountain": "거창 갈미봉",
+  "obsid": "8919",
+  "lat": 35.84,
+  "lon": 127.81,
+  "altitudeM": 897.0
+ },
+ {
+  "region": "제주도",
+  "mountain": "제주 노로오름",
+  "obsid": "9910",
+  "lat": 33.38,
+  "lon": 126.45,
+  "altitudeM": 930.0
+ },
+ {
+  "region": "제주도",
+  "mountain": "제주 사려니숲",
+  "obsid": "9911",
+  "lat": 33.41,
+  "lon": 126.65,
+  "altitudeM": 549.0
+ },
+ {
+  "region": "제주도",
+  "mountain": "서귀포시험림",
+  "obsid": "9912",
+  "lat": 33.31,
+  "lon": 126.54,
+  "altitudeM": 604.0
+ },
+ {
+  "region": "제주도",
+  "mountain": "난대림연구소",
+  "obsid": "9913",
+  "lat": 33.36,
+  "lon": 126.64,
+  "altitudeM": 487.0
+ },
+ {
+  "region": "제주도",
+  "mountain": "제주 들위오름",
+  "obsid": "9914",
+  "lat": 33.42,
+  "lon": 126.54,
+  "altitudeM": 542.0
+ }
+]
