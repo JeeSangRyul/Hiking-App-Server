@@ -1,0 +1,46 @@
+{
+  "_comment": "산담 안전지수·날씨해석 튜닝값. 등산 전문가 자문으로 구간을 조정하세요. (F-B2/F-B3/F-B4)",
+  "safetyWeights": {
+    "weather": 0.40,
+    "sunsetMargin": 0.35,
+    "difficulty": 0.25
+  },
+  "safetyThresholds": {
+    "safeMin": 67,
+    "cautionMin": 34,
+    "warningMin": 16
+  },
+  "safetyBufferMinutes": 30,
+  "difficultyScore": {
+    "쉬움": 85,
+    "보통": 60,
+    "어려움": 40
+  },
+  "windRules": [
+    { "maxMs": 4.0,  "advice": "바람 약함",        "summary": null,            "penalty": 0 },
+    { "maxMs": 8.0,  "advice": "바람 보통",        "summary": null,            "penalty": 10 },
+    { "maxMs": 12.0, "advice": "초보자 주의",      "summary": "정상 강풍 예상", "penalty": 25 },
+    { "maxMs": 999.0,"advice": "산행 비추천",      "summary": "강풍 위험",      "penalty": 50 }
+  ],
+  "precipRules": [
+    { "maxPct": 20,  "advice": null,        "summary": null,        "penalty": 0 },
+    { "maxPct": 50,  "advice": "우산 챙기기", "summary": "비 가능",    "penalty": 15 },
+    { "maxPct": 101, "advice": "우천 주의",   "summary": "우천 예상",  "penalty": 35 }
+  ],
+  "coldRules": [
+    { "minC": 5.0,   "penalty": 0 },
+    { "minC": 0.0,   "penalty": 10 },
+    { "minC": -100.0,"penalty": 20 }
+  ],
+  "sunsetMarginScore": [
+    { "minMinutes": 120, "score": 100 },
+    { "minMinutes": 60,  "score": 75 },
+    { "minMinutes": 0,   "score": 45 },
+    { "minMinutes": -100000, "score": 15 }
+  ],
+  "altitudeCorrection": {
+    "tempDropCPer100m": 0.6,
+    "windGainFactor": 1.3,
+    "summitAltitudeM": 800
+  }
+}

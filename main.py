@@ -1,62 +1,538 @@
-# 
-#  main.py - 하이킹 앱 서버 1단계
-#  "산 목록을 JSON으로 돌려주는" 가장 작은 FastAPI 서버
-#  지금은 목업 데이터로 쓰고, 나중에 이 부분을 공공데이터 호출로 바꿀 예정
+#
+#  main.py — 산담(SanDam) 서버
+#  공공데이터(기상청/KASI/산림청)는 "연결돼 있다고 가정"하고, 그 자리를 목업 + 연산으로 대체한다.
+#  실데이터로 바꿀 때는 catalog.py(코스), interpret_weather(기상청), sun_event(KASI)만 교체하면 된다.
+#
+#  실행:  uvicorn main:app --host 0.0.0.0 --port 8000     (문서: /docs)
+#
 
-from typing import Optional, List
-from fastapi import FastAPI
+import json
+import math
+import os
+import time
+from datetime import datetime, timezone, timedelta
+from typing import Optional, List, Dict, Any
+
+# .env 파일의 키들을 환경변수로 로드 (다른 모듈 import 전에 실행되어야 함!)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass   # python-dotenv 미설치 시 시스템 환경변수만 사용
+
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 
-#  FastAPI 앱(서버) 객체 생성. title은 자동 문서(/docs)에 표시된다.
-app = FastAPI(title="hiking API", version = "0.1")
+import catalog
+import kma_weather
+import kasi_sunset      # 천문연 출몰시각 실연동 (키 없으면 NOAA 자체 연산 폴백)
+import mtn_weather      # 산악기상관측망 실측 (키/관측소 없으면 고도보정 추정 유지)
+import auth
+import db
 
-# -- 데이터 모델 --
-# Swift의 'struct ...: Codable' 와 똑같은 역할
-# 필드 이름/타입을 적으면 FastAPI가 자동으로 JSON으로 바꿔준다.
+app = FastAPI(title="SanDam API", version="1.0")
 
-class Course(BaseModel):
-    name: str           # 산 이름
-    courseName: str     # 코스 이름
-    distanceKm: float   # 거리(km)
-    difficulty: str     # 난이도
-    safety: str         # 안전 단계
-    latitude: float     # 위도
-    longitude: float    # 경도
+# ─────────────────────────────────────────────────────────────
+# 설정 로드 (가중치·임계값·날씨변환표·안전버퍼) — F-B2/F-B3/F-B4
+# ─────────────────────────────────────────────────────────────
+_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config.json")
+with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
+    CONFIG: Dict[str, Any] = json.load(f)
 
-# ── 임시 목업 데이터 (나중에 공공데이터로 교체) ──────────────────
-MOUNTAINS: List[Course] = [
-    Course(name="북한산", courseName="백운대 코스", distanceKm=4.2,
-           difficulty="보통", safety="safe",
-           latitude=37.6597, longitude=126.9779),
-    Course(name="도봉산", courseName="자운봉 코스", distanceKm=6.4,
-           difficulty="어려움", safety="caution",
-           latitude=37.6987, longitude=127.0144),
-    Course(name="관악산", courseName="연주대 코스", distanceKm=5.1,
-           difficulty="보통", safety="safe",
-           latitude=37.4445, longitude=126.9636),
-    Course(name="수락산", courseName="주봉 코스", distanceKm=7.2,
-           difficulty="어려움", safety="warning",
-           latitude=37.6779, longitude=127.0586),
-]
+KST = timezone(timedelta(hours=9))   # 한국 산 기준
 
-# -- API 엔드포인트(주소) --
-# @app.get("/주소") 아래 함수가, 그 주소로 요청이 오면 실행된다
 
+# ─────────────────────────────────────────────────────────────
+# 일출/일몰 (KASI 대체) — NOAA 알고리즘 순수 연산. 앱 SunsetCalculator와 동일 로직.
+# ─────────────────────────────────────────────────────────────
+def _sind(d): return math.sin(math.radians(d))
+def _cosd(d): return math.cos(math.radians(d))
+def _tand(d): return math.tan(math.radians(d))
+def _asind(x): return math.degrees(math.asin(x))
+def _acosd(x): return math.degrees(math.acos(x))
+def _atand(x): return math.degrees(math.atan(x))
+
+
+def sun_event(lat: float, lon: float, date: datetime, is_sunrise: bool, tz_offset: float = 9.0):
+    """주어진 좌표·날짜의 (epoch_utc, 'HH:mm' 로컬) 반환. 백야/극야면 None."""
+    N = date.timetuple().tm_yday
+    zenith = 90.833
+    lng_hour = lon / 15.0
+    t = N + ((6 - lng_hour) / 24) if is_sunrise else N + ((18 - lng_hour) / 24)
+    M = (0.9856 * t) - 3.289
+    L = (M + 1.916 * _sind(M) + 0.020 * _sind(2 * M) + 282.634) % 360
+    RA = _atand(0.91764 * _tand(L)) % 360
+    L_q = math.floor(L / 90) * 90
+    RA_q = math.floor(RA / 90) * 90
+    RA = (RA + (L_q - RA_q)) / 15.0
+    sin_dec = 0.39782 * _sind(L)
+    cos_dec = _cosd(_asind(sin_dec))
+    cos_h = (_cosd(zenith) - (sin_dec * _sind(lat))) / (cos_dec * _cosd(lat))
+    if cos_h > 1 or cos_h < -1:
+        return None
+    H = (360 - _acosd(cos_h)) if is_sunrise else _acosd(cos_h)
+    H /= 15.0
+    T = H + RA - (0.06571 * t) - 6.622
+    UT = (T - lng_hour) % 24
+
+    base = datetime(date.year, date.month, date.day, tzinfo=timezone.utc)
+    local = (UT + tz_offset) % 24
+    # epoch은 "요청한 로컬 날짜"의 이벤트 시각 기준: 로컬 시각 − 시간대 오프셋.
+    # (UT를 그대로 더하면 일출처럼 로컬 자정을 넘는 경우 epoch이 하루 밀린다)
+    event_utc = base + timedelta(hours=local) - timedelta(hours=tz_offset)
+    epoch = event_utc.timestamp()
+    text = f"{int(local):02d}:{int((local - int(local)) * 60):02d}"
+    return epoch, text
+
+
+# ─────────────────────────────────────────────────────────────
+# 해석형 날씨 (F-B3) — 원시 수치 → 행동지침 문구 + 정상 고도 보정
+# ─────────────────────────────────────────────────────────────
+def _pick(rules: List[Dict], value: float, key: str):
+    for r in rules:
+        if value <= r[key]:
+            return r
+    return rules[-1]
+
+
+def _cold_penalty(temp_c: float) -> int:
+    for r in CONFIG["coldRules"]:
+        if temp_c >= r["minC"]:
+            return r["penalty"]
+    return CONFIG["coldRules"][-1]["penalty"]
+
+
+def _symbol(precip: int, summit_wind: float, summit_temp: float) -> str:
+    if precip >= 50:
+        return "cloud.rain.fill"
+    if precip >= 20:
+        return "cloud.sun.fill"
+    if summit_wind >= 8:
+        return "wind"
+    if summit_temp <= 0:
+        return "cloud.snow.fill"
+    return "sun.max.fill"
+
+
+def interpret_weather(raw: Dict[str, Any], summit_alt: float,
+                      measured: Optional[Dict[str, Any]] = None):
+    """returns (weather_dict, weather_score 0~100).
+    measured(산악기상 실측)가 있으면 고도보정 '추정'을 능선 실측값으로 대체한다."""
+    ac = CONFIG["altitudeCorrection"]
+    base_t = float(raw["baseTempC"])
+    wind = float(raw["windMs"])
+    precip = int(raw["precipPct"])
+
+    summit_t = base_t - ac["tempDropCPer100m"] * (summit_alt / 100.0)
+    summit_wind = wind * ac["windGainFactor"]
+
+    source = None
+    if measured:
+        if measured.get("tempC") is not None:
+            summit_t = float(measured["tempC"])
+        if measured.get("windMs") is not None:
+            summit_wind = float(measured["windMs"])
+        source = f"{measured.get('obsname', '산악관측소')} 실측"
+
+    wind_rule = _pick(CONFIG["windRules"], summit_wind, "maxMs")
+    precip_rule = _pick(CONFIG["precipRules"], precip, "maxPct")
+    cold_pen = _cold_penalty(summit_t)
+
+    summary = wind_rule["summary"] or precip_rule["summary"] or "대체로 맑음"
+    advice = precip_rule["advice"] or wind_rule["advice"] or "산행 적합"
+
+    score = max(0, 100 - wind_rule["penalty"] - precip_rule["penalty"] - cold_pen)
+
+    now_kst = datetime.now(KST)
+    weather = {
+        "summary": summary,
+        "advice": advice,
+        "symbol": _symbol(precip, summit_wind, summit_t),
+        "highC": round(base_t + 4),
+        "lowC": round(summit_t - 4),
+        "precipitation": precip,
+        "windAdvice": wind_rule["advice"],
+        "raw": {
+            "baseTempC": round(base_t, 1),
+            "windMs": round(wind, 1),
+            "precipPct": precip,
+            "summitTempC": round(summit_t, 1),
+            "summitWindMs": round(summit_wind, 1),
+        },
+        "asOfText": f"오늘 {now_kst:%H:%M} 기준" + (f" · {source}" if source else ""),
+    }
+    return weather, score
+
+
+# ─────────────────────────────────────────────────────────────
+# 안전지수 (F-B2) — weather/sunsetMargin/difficulty 가중합
+# ─────────────────────────────────────────────────────────────
+def _sunset_margin_score(sunset_epoch: float, total_minutes: int, now: float) -> int:
+    buffer = CONFIG["safetyBufferMinutes"]
+    margin_min = (sunset_epoch - now) / 60.0 - total_minutes - buffer
+    for r in CONFIG["sunsetMarginScore"]:
+        if margin_min >= r["minMinutes"]:
+            return r["score"]
+    return CONFIG["sunsetMarginScore"][-1]["score"]
+
+
+def compute_safety(course: Dict[str, Any], weather_score: float,
+                   weather_summary: str, sunset_epoch: float, now: float):
+    w = CONFIG["safetyWeights"]
+    diff_score = CONFIG["difficultyScore"].get(course["difficulty"], 60)
+    total = course["ascentMinutes"] + course["descentMinutes"]
+    sun_score = _sunset_margin_score(sunset_epoch, total, now)
+
+    score = round(w["weather"] * weather_score
+                  + w["sunsetMargin"] * sun_score
+                  + w["difficulty"] * diff_score)
+    score = max(0, min(100, score))
+
+    # 4단계 (확정 기획 ④): safe ≥67 / caution 34~66 / warning 16~33 / danger ≤15
+    th = CONFIG["safetyThresholds"]
+    if score >= th["safeMin"]:
+        level = "safe"
+    elif score >= th["cautionMin"]:
+        level = "caution"
+    elif score >= th.get("warningMin", 16):
+        level = "warning"
+    else:
+        level = "danger"
+
+    factors = {"weather": round(weather_score), "sunsetMargin": round(sun_score), "difficulty": diff_score}
+    lowest = min(factors, key=factors.get)
+    difficulty_reason = {"쉬움": "무난한 코스", "보통": "적당한 난이도의 코스"}.get(course["difficulty"], "가파른 코스")
+    reason_map = {"weather": weather_summary, "sunsetMargin": "일몰 임박 · 시간 여유 부족", "difficulty": difficulty_reason}
+    return {"score": score, "level": level, "reason": reason_map[lowest], "factors": factors}
+
+
+# ─────────────────────────────────────────────────────────────
+# 거리 (haversine)
+# ─────────────────────────────────────────────────────────────
+def _haversine_km(lat1, lon1, lat2, lon2):
+    r = 6371.0
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dl = math.radians(lon2 - lon1)
+    a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return round(2 * r * math.asin(math.sqrt(a)), 1)
+
+
+# ─────────────────────────────────────────────────────────────
+# DTO 빌더
+# ─────────────────────────────────────────────────────────────
+def _today_kst() -> datetime:
+    return datetime.now(KST)
+
+
+def _course_sunset(course: Dict[str, Any], override=None):
+    """일몰 (epoch, 'HH:mm'). 우선순위: KASI 실데이터(override) → NOAA 자체 연산 → 고정 폴백."""
+    if override is not None:
+        return override
+    res = sun_event(course["latitude"], course["longitude"], _today_kst(), is_sunrise=False)
+    if res is None:
+        d = _today_kst().replace(hour=19, minute=21, second=0, microsecond=0)
+        return d.timestamp(), "19:21"
+    return res
+
+
+async def context_for(course: Dict[str, Any]):
+    """코스별 실데이터 컨텍스트 일괄 수집(전부 키 없으면 None → 목업/자체연산 폴백).
+    반환: (raw날씨[기상청], measured[산악기상 실측], sunset_override[KASI])"""
+    lat, lon = course["latitude"], course["longitude"]
+    raw = await kma_weather.fetch_raw_weather(lat, lon)
+    measured = await mtn_weather.fetch_measured(lat, lon)
+    kasi = await kasi_sunset.fetch(lat, lon)
+    sunset_override = (kasi[2], kasi[3]) if kasi else None   # (sunsetEpoch, "HH:mm")
+    return raw, measured, sunset_override
+
+
+def _apply_control_override(course: Dict[str, Any], safety: Dict[str, Any]) -> Dict[str, Any]:
+    """입산통제 코스는 안전지수와 무관하게 danger + 통제 사유 (확정 기획 ④)."""
+    if not course.get("controlled"):
+        return safety
+    return {**safety,
+            "level": "danger",
+            "score": min(safety["score"], 10),
+            "reason": course.get("controlReason", "입산통제 구간")}
+
+
+def build_summary(course: Dict[str, Any], user_lat: Optional[float], user_lon: Optional[float],
+                  raw_override: Optional[Dict[str, Any]] = None,
+                  measured: Optional[Dict[str, Any]] = None,
+                  sunset_override=None) -> Dict[str, Any]:
+    now = time.time()
+    weather, wscore = interpret_weather(raw_override or course["rawWeather"],
+                                        course["summitAltitudeM"], measured)
+    sunset_epoch, _ = _course_sunset(course, sunset_override)
+    safety = _apply_control_override(
+        course, compute_safety(course, wscore, weather["summary"], sunset_epoch, now))
+
+    dist_from_user = None
+    if user_lat is not None and user_lon is not None:
+        dist_from_user = _haversine_km(user_lat, user_lon, course["latitude"], course["longitude"])
+
+    return {
+        "id": course["id"],
+        "mountainName": course["mountainName"],
+        "courseName": course["courseName"],
+        "distanceKm": course["distanceKm"],
+        "estimatedMinutes": course["ascentMinutes"] + course["descentMinutes"],
+        "ascentMinutes": course["ascentMinutes"],
+        "descentMinutes": course["descentMinutes"],
+        "cumulativeGainM": course["cumulativeGainM"],
+        "difficulty": course["difficulty"],
+        "latitude": course["latitude"],
+        "longitude": course["longitude"],
+        "seedHue": course["seedHue"],
+        "distanceFromUserKm": dist_from_user,
+        "safetyLevel": safety["level"],
+        "safetyScore": safety["score"],
+        "controlled": bool(course.get("controlled", False)),
+        "controlReason": course.get("controlReason"),
+    }
+
+
+def build_detail(course: Dict[str, Any],
+                 raw_override: Optional[Dict[str, Any]] = None,
+                 measured: Optional[Dict[str, Any]] = None,
+                 sunset_override=None) -> Dict[str, Any]:
+    now = time.time()
+    weather, wscore = interpret_weather(raw_override or course["rawWeather"],
+                                        course["summitAltitudeM"], measured)
+    sunset_epoch, sunset_text = _course_sunset(course, sunset_override)
+    safety = _apply_control_override(
+        course, compute_safety(course, wscore, weather["summary"], sunset_epoch, now))
+
+    buffer = CONFIG["safetyBufferMinutes"]
+    rec_start_epoch = sunset_epoch - (course["descentMinutes"] + buffer) * 60
+    rec_start_text = datetime.fromtimestamp(rec_start_epoch, KST).strftime("%H:%M")
+
+    summary = build_summary(course, None, None, raw_override, measured, sunset_override)
+    summary.update({
+        "routePreview": [{"latitude": la, "longitude": lo} for (la, lo) in course["routePreview"]],
+        "sunsetEpoch": sunset_epoch,
+        "sunsetText": sunset_text,
+        "recommendedDescentStartEpoch": rec_start_epoch,
+        "recommendedDescentStartText": rec_start_text,
+        "weather": weather,
+        "safety": safety,
+    })
+    # 경로이탈 판정용 원본 해상도 경로(실데이터 ETL 산출물에만 존재)
+    if course.get("routeFull"):
+        summary["routeFull"] = [{"latitude": la, "longitude": lo} for (la, lo) in course["routeFull"]]
+    return summary
+
+
+# ─────────────────────────────────────────────────────────────
+# 엔드포인트
+# ─────────────────────────────────────────────────────────────
 @app.get("/")
 def home():
-    """
-    서버가 살아있는지 확인용.
-    """
     return {"message": "서버가 살아있어요 🏔️"}
 
-@app.get("/mountains", response_model=List[Course])
-def list_mountains(query: Optional[str] = None):
-    """
-    산/코스 목록을 돌려줍니다.
-    /mountains            → 전체 목록
-    /mountains?query=관악  → 이름에 '관악'이 포함된 것만
-    """
 
+@app.get("/mountains")
+async def list_mountains(query: Optional[str] = None,
+                         lat: Optional[float] = None,
+                         lon: Optional[float] = None):
+    """코스 검색/근처. query 부분일치, lat·lon 있으면 거리 오름차순.
+    검색어가 아직 변환 안 된 산이면 등산로 원본(전국 2,200여 산)에서 즉석 변환한다."""
+    import asyncio
+    courses = catalog.COURSES
     if query:
-        return [m for m in MOUNTAINS if query in m.name or query in m.courseName]
-    return MOUNTAINS
+        q = query.strip()
+        hits = [c for c in courses if q in c["mountainName"] or q in c["courseName"]]
+        if not hits and len(q) >= 2:
+            # 변환 안 된 산 → 즉석 변환(CPU 작업이라 스레드로, 첫 검색만 1~3초)
+            await asyncio.to_thread(catalog.search_or_convert, q)
+            courses = catalog.COURSES
+            hits = [c for c in courses if q in c["mountainName"] or q in c["courseName"]]
+        courses = hits
+
+    # 외부 API(날씨·일몰) 폭주 방지: 가까운 순 상위 30개까지만 요약 생성
+    if lat is not None and lon is not None:
+        courses = sorted(courses,
+                         key=lambda c: _haversine_km(lat, lon, c["latitude"], c["longitude"]))
+    courses = courses[:30]
+
+    summaries = []
+    for c in courses:
+        raw, measured, sunset_ov = await context_for(c)
+        summaries.append(build_summary(c, lat, lon, raw, measured, sunset_ov))
+    if lat is not None and lon is not None:
+        summaries.sort(key=lambda s: s["distanceFromUserKm"] if s["distanceFromUserKm"] is not None else 1e9)
+    return summaries
+
+
+@app.get("/courses/{course_id}")
+async def course_detail(course_id: str):
+    c = catalog.find(course_id)
+    if c is None:
+        raise HTTPException(status_code=404, detail="코스를 찾을 수 없습니다")
+    raw, measured, sunset_ov = await context_for(c)
+    return build_detail(c, raw, measured, sunset_ov)
+
+
+@app.get("/weather")
+async def weather(lat: float, lon: float, summitAltitude: float = 800.0):
+    """좌표 기반 해석형 날씨. 기상청 예보(키 있으면) + 산악기상 실측 보강 → 없으면 목업."""
+    measured = await mtn_weather.fetch_measured(lat, lon)
+    live = await kma_weather.fetch_raw_weather(lat, lon)
+    if live is not None:
+        w, _ = interpret_weather(live, summitAltitude, measured)
+        return w
+    nearest = min(catalog.COURSES,
+                  key=lambda c: _haversine_km(lat, lon, c["latitude"], c["longitude"]))
+    w, _ = interpret_weather(nearest["rawWeather"], summitAltitude, measured)
+    return w
+
+
+@app.get("/sunset")
+async def sunset(lat: float, lon: float, date: Optional[str] = None):
+    """일출/일몰. ① KASI 실데이터(키 있으면) → ② NOAA 자체 연산 폴백."""
+    if date:
+        d = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=KST)
+    else:
+        d = _today_kst()
+
+    kasi = await kasi_sunset.fetch(lat, lon, d)
+    if kasi is not None:
+        rise_epoch, rise_text, set_epoch, set_text = kasi
+        return {"sunriseEpoch": rise_epoch, "sunriseText": rise_text,
+                "sunsetEpoch": set_epoch, "sunsetText": set_text}
+
+    rise = sun_event(lat, lon, d, is_sunrise=True)
+    set_ = sun_event(lat, lon, d, is_sunrise=False)
+    return {
+        "sunriseEpoch": rise[0] if rise else None,
+        "sunriseText": rise[1] if rise else None,
+        "sunsetEpoch": set_[0] if set_ else None,
+        "sunsetText": set_[1] if set_ else None,
+    }
+
+
+@app.get("/safety/config")
+def safety_config():
+    return CONFIG
+
+
+# ─────────────────────────────────────────────────────────────
+# 사용자 데이터 (Supabase 로그인 필요) — 기록 / 즐겨찾기
+# ─────────────────────────────────────────────────────────────
+class TrackPoint(BaseModel):
+    tOffset: int
+    latitude: float
+    longitude: float
+    altitude: Optional[float] = None
+
+
+class HikeUpload(BaseModel):
+    courseId: Optional[str] = None
+    courseName: str
+    startedAt: float            # epoch
+    endedAt: float              # epoch
+    distanceKm: float = 0
+    durationSec: int = 0
+    cumulativeGainM: int = 0
+    avgHeartRate: Optional[int] = None
+    weatherSummary: Optional[str] = None
+    track: list[TrackPoint] = []
+
+
+class FavoriteUpload(BaseModel):
+    courseId: str
+    courseName: Optional[str] = None
+
+
+def _require_db():
+    if not db.configured():
+        raise HTTPException(status_code=503, detail="DB 미설정: DATABASE_URL 필요")
+
+
+@app.post("/hikes")
+async def create_hike(hike: HikeUpload, user_id: str = Depends(auth.get_current_user)):
+    _require_db()
+    pool = await db.pool()
+    async with pool.acquire() as conn:
+        async with conn.transaction():
+            row = await conn.fetchrow(
+                """insert into public.hikes
+                   (user_id, course_id, course_name, started_at, ended_at,
+                    distance_km, duration_sec, cumulative_gain_m, avg_heart_rate, weather_summary)
+                   values ($1,$2,$3, to_timestamp($4), to_timestamp($5), $6,$7,$8,$9,$10)
+                   returning id""",
+                user_id, hike.courseId, hike.courseName, hike.startedAt, hike.endedAt,
+                hike.distanceKm, hike.durationSec, hike.cumulativeGainM,
+                hike.avgHeartRate, hike.weatherSummary,
+            )
+            hike_id = row["id"]
+            if hike.track:
+                await conn.executemany(
+                    """insert into public.trackpoints (hike_id, t_offset, latitude, longitude, altitude)
+                       values ($1,$2,$3,$4,$5)""",
+                    [(hike_id, p.tOffset, p.latitude, p.longitude, p.altitude) for p in hike.track],
+                )
+    return {"id": str(hike_id)}
+
+
+@app.get("/hikes")
+async def list_hikes(user_id: str = Depends(auth.get_current_user)):
+    _require_db()
+    pool = await db.pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            """select id, course_id, course_name,
+                      extract(epoch from started_at) as started_at,
+                      extract(epoch from ended_at) as ended_at,
+                      distance_km, duration_sec, cumulative_gain_m, avg_heart_rate, weather_summary
+               from public.hikes where user_id = $1 order by started_at desc limit 200""",
+            user_id,
+        )
+    # 명세 §1: 모든 키는 camelCase
+    return [{
+        "id": str(r["id"]),
+        "courseId": r["course_id"],
+        "courseName": r["course_name"],
+        "startedAt": float(r["started_at"]),
+        "endedAt": float(r["ended_at"]),
+        "distanceKm": float(r["distance_km"]),
+        "durationSec": r["duration_sec"],
+        "cumulativeGainM": r["cumulative_gain_m"],
+        "avgHeartRate": r["avg_heart_rate"],
+        "weatherSummary": r["weather_summary"],
+    } for r in rows]
+
+
+@app.get("/favorites")
+async def list_favorites(user_id: str = Depends(auth.get_current_user)):
+    _require_db()
+    pool = await db.pool()
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(
+            "select course_id, course_name from public.favorites where user_id=$1", user_id)
+    # 명세 §1: 모든 키는 camelCase
+    return [{"courseId": r["course_id"], "courseName": r["course_name"]} for r in rows]
+
+
+@app.post("/favorites")
+async def add_favorite(fav: FavoriteUpload, user_id: str = Depends(auth.get_current_user)):
+    _require_db()
+    pool = await db.pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            """insert into public.favorites (user_id, course_id, course_name)
+               values ($1,$2,$3)
+               on conflict (user_id, course_id) do update set course_name = excluded.course_name""",
+            user_id, fav.courseId, fav.courseName)
+    return {"ok": True}
+
+
+@app.delete("/favorites/{course_id}")
+async def remove_favorite(course_id: str, user_id: str = Depends(auth.get_current_user)):
+    _require_db()
+    pool = await db.pool()
+    async with pool.acquire() as conn:
+        await conn.execute(
+            "delete from public.favorites where user_id=$1 and course_id=$2", user_id, course_id)
+    return {"ok": True}
