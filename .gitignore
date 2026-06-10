@@ -219,3 +219,9 @@ __marimo__/
 
 # MacOS
 .DS_Store
+
+# 산담 추가 제외
+.env
+venv/
+data/raw/
+data/mountain_index.json
