@@ -8,7 +8,9 @@ catalog.py — 코스 카탈로그.
 추가로 data/control.json(입산통제 — 시즌 공고 수동 반영)을 병합한다.
 controlled=True인 코스는 main.py가 안전지수와 무관하게 danger + 사유를 내려준다.
 
-[분석노트] 이 파일의 위치: ETL 산출물(courses.json)을 서버 메모리에 올리고 관리하는 '창고지기'.
+  trail_builder(변환 엔진)이 예쁘게 조립해 준 코스 데이터를 서버 메모리에 안전하게 보관하고, 사용자가 검색할 때 꺼내주거나 실시간으로 통제 정보를 합쳐주는 역할
+  trail_builder.py과 catalog.py는 catalog.py이 trail_builder.py에게 데이터르르 요청하는 입장
+  
   trail_builder(변환) ──courses.json──▶ 이 파일(적재·검색·즉석변환) ──COURSES──▶ main.py(API 응답)
   핵심 상태는 모듈 전역 리스트 COURSES 하나. import 시점에 1회 적재되고,
   검색 시 즉석 변환(search_or_convert)으로 런타임에 늘어날 수 있음.
