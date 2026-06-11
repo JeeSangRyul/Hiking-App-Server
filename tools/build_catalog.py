@@ -9,6 +9,15 @@ build_catalog.py — 등산로 실데이터 일괄 변환 CLI (변환 코어는 
   python tools/build_catalog.py --mountains 북한산@서울,설악산
   python tools/build_catalog.py --list 설악              # 산명 검색
   python tools/build_catalog.py --reindex                # zip 추가/변경 후 인덱스 재생성
+
+[분석노트] ETL의 'E+L 실행 버튼'. 변환 로직은 전부 trail_builder에 있고 여기는 CLI 껍데기.
+  catalog.search_or_convert(즉석 변환)와 같은 코어를 쓰므로 결과물 형식은 동일.
+  차이점 둘: ① 산정보 API(fetch_mountain_info)로 진짜 높이를 받아 summitAltitudeM/cumulativeGainM을
+  갱신 — 즉석 변환에는 없는 보정! (즉석 변환된 산은 높이 800m 고정인 이유)
+  ② mountains.json(산 높이·소개·교통편)도 같이 생성.
+  ⚠️ courses.json을 통째로 덮어씀 — 즉석 변환으로 쌓인 산들이 날아감(병합 아님).
+  [다음 업무 TODO] 백로그 #4 'courses.json 재생성'은 이 스크립트 실행으로 해결:
+    python tools/build_catalog.py --mountains 북한산@서울,도봉산@서울,... (기존 보유 산 전부 나열)
 """
 import argparse
 import json
@@ -32,6 +41,9 @@ DEFAULT_TARGETS = "북한산@서울,도봉산@서울,관악산@서울,수락산@
 
 def fetch_mountain_info(names):
     """산림청 산정보 API — 높이·소재지. 키 없으면 빈 dict(폴백 높이 유지)."""
+    # [분석노트] FALLBACK_HEIGHTS(8개산 하드코딩)의 진짜 해결책이 여기 있음 — 산정보 API가
+    # heightM을 줌. 응답은 XML. 현재 mountains.json에 2개산만 있는 건 기본 타겟(서울 4산) 중
+    # 매칭 성공분만 저장됐기 때문. [다음 업무 TODO] 백로그 #9: 전 산 일괄 조회로 확장.
     key = (os.environ.get("DATA_GO_KR_SERVICE_KEY")
            or os.environ.get("KMA_SERVICE_KEY") or "").strip()
     if not key:

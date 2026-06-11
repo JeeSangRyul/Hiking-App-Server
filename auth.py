@@ -9,6 +9,14 @@ auth.py — Supabase 인증 토큰 검증.
 환경변수:
   SUPABASE_JWT_SECRET = Settings > API > JWT Secret (HS256용)
   SUPABASE_URL        = https://<ref>.supabase.co   (ES256/RS256 JWKS용)
+
+[분석노트] 인증의 분업: 로그인·토큰 발급은 전부 Supabase가 함(앱 SupabaseAuth.swift ↔ Supabase 직접 통신).
+  이 서버는 토큰을 '발급'하지 않고 '검증'만 — 도장 진위 확인소.
+  유일한 공개 함수 get_current_user가 FastAPI Depends로 /hikes·/favorites에 주입되어
+  요청마다 JWT 서명·만료·audience를 확인하고 user_id(sub)를 꺼내줌.
+  흐름: 앱 로그인 → Supabase가 JWT 발급(1시간 만료) → 앱이 Bearer로 전송 → 여기서 검증
+       → 만료 시 401 → 앱 SanDamAPI.send()가 refresh 후 1회 재시도.
+  HS256(구형, 공유 비밀키)/ES256·RS256(신형, JWKS 공개키) 자동 분기 — alg 헤더로 판단.
 """
 import os
 import logging
