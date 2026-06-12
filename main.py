@@ -1,14 +1,19 @@
 #
 #  main.py — 산담(SanDam) 서버
 #  공공데이터(기상청/KASI/산림청)는 "연결돼 있다고 가정"하고, 그 자리를 목업 + 연산으로 대체한다.
-#  실데이터로 바꿀 때는 catalog.py(코스), interpret_weather(기상청), sun_event(KASI)만 교체하면 된다.
-#
+
 #  실행:  uvicorn main:app --host 0.0.0.0 --port 8000     (문서: /docs)
-#
-# [분석노트] 이 파일의 위치: '판매대'. catalog의 코스 뼈대에 날씨·일몰·안전지수를
-# 요청 시점에 계산해 얹어서 JSON으로 응답한다. 구역 6개:
-#   ①설정 ②일출몰 자체연산 ③날씨 해석 ④안전지수 ⑤DTO 빌더 ⑥엔드포인트
-# [다음 업무 TODO] 파일이 더 커지면 계층 분리 (iOS의 MVVM 분리와 같은 원리):
+# catalog가 들고 있는 코스에 날씨/ 일몰/ 안전지수라는 '오늘의 상태'를 요청 시점에 계산해 얹어 JSON으로 파는 곳
+
+# ① 설정(49~53)      config.json 로드 — 모든 숫자의 원천
+# ② 일출몰(59~100)   sun_event — NOAA 순수 연산 (KASI 폴백)
+# ③ 날씨(109~187)    interpret_weather — 수치→사람말 번역 + 고도보정
+# ④ 안전(193~236)    compute_safety — 신호등 결정
+# ⑤ DTO(242~361)     context_for + build_summary/detail — 응답 조립
+# ⑥ 엔드포인트(367~) 공개 5개(코스·날씨·일몰·설정) + JWT 3개(기록·즐겨찾기)
+
+#   TODO: 실데이터로 바꿀 때는 catalog.py(코스), interpret_weather(기상청), sun_event(KASI)만 교체하면 된다.
+#   TODO: 파일이 더 커지면 계층 분리 (iOS의 MVVM 분리와 같은 원리):
 #   routers/courses.py·hikes.py·favorites.py (APIRouter) + services/safety.py·weather.py·sun.py
 #   + schemas.py(Pydantic 모델). main.py는 앱 생성+라우터 등록만 남김.
 #   kma_weather/kasi_sunset/mtn_weather/catalog/auth/db는 이미 분리 양호 — main만 혼재 상태.
@@ -31,6 +36,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 
 import catalog
+from geo import haversine_km   # 공용 거리 계산 — 사용처: build_summary, /mountains 정렬, /weather 최근접
 import kma_weather
 import kasi_sunset      # 천문연 출몰시각 실연동 (키 없으면 NOAA 자체 연산 폴백)
 import mtn_weather      # 산악기상관측망 실측 (키/관측소 없으면 고도보정 추정 유지)
@@ -39,12 +45,14 @@ import db
 
 app = FastAPI(title="SanDam API", version="1.0")
 
-# ─────────────────────────────────────────────────────────────
-# 설정 로드 (가중치·임계값·날씨변환표·안전버퍼) — F-B2/F-B3/F-B4
-# ─────────────────────────────────────────────────────────────
-# [분석노트] 안전지수 가중치·임계값·날씨 해석 규칙표·하산 버퍼를 코드 밖(config.json)에 둔 이유:
+# REVIEW: ① 설정
+
+# 안전지수 가중치·임계값·날씨 해석 규칙표·하산 버퍼를 코드 밖(config.json)에 둔 이유:
 # 코드 수정 없이 숫자만 바꿔 튜닝. /safety/config로 앱에도 통째로 내려줘서
-# 서버·앱(SanDamConfig)이 같은 공식을 공유. 사용처: interpret_weather, compute_safety.
+# 서버·앱(SanDamConfig)이 같은 공식을 공유.
+#  사용처: interpret_weather, compute_safety.
+# TODO: 계산식은 기획에 따라서 수정필요
+
 _CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config.json")
 with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
     CONFIG: Dict[str, Any] = json.load(f)
@@ -52,8 +60,10 @@ with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
 KST = timezone(timedelta(hours=9))   # 한국 산 기준
 
 
+# REVIEW: ② 일출몰
+# TODO: 데이터가 어떻게 들어오는지 확인 필수
 # ─────────────────────────────────────────────────────────────
-# 일출/일몰 (KASI 대체) — NOAA 알고리즘 순수 연산. 앱 SunsetCalculator와 동일 로직.
+# 일출/일몰 (KASI 대체) —> NOAA 알고리즘 순수 연산 -> 고정값
 # ─────────────────────────────────────────────────────────────
 def _sind(d): return math.sin(math.radians(d))
 def _cosd(d): return math.cos(math.radians(d))
@@ -65,7 +75,7 @@ def _atand(x): return math.degrees(math.atan(x))
 
 def sun_event(lat: float, lon: float, date: datetime, is_sunrise: bool, tz_offset: float = 9.0):
     """주어진 좌표·날짜의 (epoch_utc, 'HH:mm' 로컬) 반환. 백야/극야면 None."""
-    # [분석노트] NOAA 천문 알고리즘으로 일출/일몰을 외부 API 없이 순수 계산.
+    # NOTE: 공공데이터가 아닌 계산한 로직 => 특수 상황에 사용함
     # 왜 필요한가: KASI 키가 없거나 호출 실패 시의 폴백 (일몰은 이 앱의 생명줄이라 무조건 값이 있어야 함).
     # 앱 SunsetCalculator와 동일 로직 — 서버·앱 계산 결과 일치 보장.
     # 사용처: _course_sunset()(코스 일몰), /sunset 엔드포인트. 위 _sind 등 6개는 도 단위 삼각함수 단축어.
@@ -99,12 +109,15 @@ def sun_event(lat: float, lon: float, date: datetime, is_sunrise: bool, tz_offse
     return epoch, text
 
 
+# REVIEW: ③ 날씨
 # ─────────────────────────────────────────────────────────────
 # 해석형 날씨 (F-B3) — 원시 수치 → 행동지침 문구 + 정상 고도 보정
 # ─────────────────────────────────────────────────────────────
-# [분석노트] config의 규칙표에서 값에 맞는 행 선택 (예: 풍속≤3 "바람 약함", ≤8 "강풍"...).
-# _cold_penalty: 기온별 감점 조회. _symbol: 날씨 → SF Symbol 아이콘명 (아이콘 선택권이 서버에 있음).
+# config의 규칙표에서 값에 맞는 행 선택 (예: 풍속≤3 "바람 약함", ≤8 "강풍"...)하는 함수.
+# _cold_penalty: 기온별 감점 조회.
+#  _symbol: 날씨 → SF Symbol 아이콘명 (아이콘 선택권이 서버에 있음).
 # 셋 다 interpret_weather 전용 헬퍼.
+
 def _pick(rules: List[Dict], value: float, key: str):
     for r in rules:
         if value <= r[key]:
@@ -118,7 +131,7 @@ def _cold_penalty(temp_c: float) -> int:
             return r["penalty"]
     return CONFIG["coldRules"][-1]["penalty"]
 
-
+# TODO: 아이콘 수정
 def _symbol(precip: int, summit_wind: float, summit_temp: float) -> str:
     if precip >= 50:
         return "cloud.rain.fill"
@@ -133,13 +146,19 @@ def _symbol(precip: int, summit_wind: float, summit_temp: float) -> str:
 
 def interpret_weather(raw: Dict[str, Any], summit_alt: float,
                       measured: Optional[Dict[str, Any]] = None):
-    """returns (weather_dict, weather_score 0~100).
-    measured(산악기상 실측)가 있으면 고도보정 '추정'을 능선 실측값으로 대체한다."""
     # [분석노트] 구역③의 본체. 원시 수치(기온·풍속·강수%)를 사람 말("정상 강풍 예상")로 번역 +
     # 날씨점수(0~100) 산출. 핵심 아이디어 = 고도보정: 평지 예보를 100m당 -0.65℃로 정상 날씨로 변환,
-    # 산악관측소 실측(measured)이 있으면 추정 대신 실측 사용(asOfText에 출처 표기).
     # 사용처: build_summary, build_detail, /weather. raw 출처: 기상청 실시간 또는 코스 rawWeather 목업.
-    # ⚠️ highC/lowC가 기온±4의 거친 추정 — 정밀한 일 최고/최저가 아님.
+
+    # TODO: 실데이터 확인 필수
+    # TODO: 데이터 계산 로직 기획 필요
+    # TODO: 산악 실측 데이터 조사 필요
+    #   └ 조사 결과(2026-06-12): 산악 실측 = 국립산림과학원 산악기상관측망(전국 460여 관측소,
+    #     기온·습도·풍속·강수량 등 7요소, 1분 단위 관측). 공공데이터포털 API(1400377/mtweather)로
+    #     공개되며 mtn_weather.py가 이미 이 API의 구현체(관측소 10km 이내일 때만 measured로 들어옴).
+    #     공식: https://mtweather.nifos.go.kr (100대 명산 서비스) · API 명세: know.nifos.go.kr
+    #     참고 구현: github.com/dearsyjang/ClimbingBear (산림청 산정보 + 날씨 결합 등산 앱)
+
     ac = CONFIG["altitudeCorrection"]
     base_t = float(raw["baseTempC"])
     wind = float(raw["windMs"])
@@ -186,13 +205,17 @@ def interpret_weather(raw: Dict[str, Any], summit_alt: float,
     return weather, score
 
 
+# REVIEW: ④ 안전
+
 # ─────────────────────────────────────────────────────────────
 # 안전지수 (F-B2) — weather/sunsetMargin/difficulty 가중합
 # ─────────────────────────────────────────────────────────────
 def _sunset_margin_score(sunset_epoch: float, total_minutes: int, now: float) -> int:
-    # [분석노트] "지금 출발하면 일몰까지 여유가 몇 분?"을 점수화.
+    # "지금 출발하면 일몰까지 여유가 몇 분?"을 점수화.
     # 여유 = (일몰까지 남은 분) - (왕복 소요) - (안전버퍼). config sunsetMarginScore 규칙표로 점수 변환.
-    # 사용처: compute_safety()만. ⚠️ '지금 출발' 가정 — 아침에 보면 여유 많고 오후에 보면 급락(의도된 동작).
+    # 사용처: compute_safety()만. 
+
+    # TODO: 해가 떨어지고 일출을 보기 위해 산행을 하는 사람들이라면 어떻게 해줘야 할지 기획필요
     buffer = CONFIG["safetyBufferMinutes"]
     margin_min = (sunset_epoch - now) / 60.0 - total_minutes - buffer
     for r in CONFIG["sunsetMarginScore"]:
@@ -205,7 +228,10 @@ def compute_safety(course: Dict[str, Any], weather_score: float,
                    weather_summary: str, sunset_epoch: float, now: float):
     # [분석노트] 앱의 '신호등'이 결정되는 곳. 날씨×일몰여유×난이도 가중합(config 가중치) → 0~100점
     # → 4단계: safe≥67 / caution 34~66 / warning 16~33 / danger≤15.
+    # TODO: 안전한지 점수를 내는 계산식에 대해 기획필요
+
     # reason: factors 중 최저 점수 항목을 골라 "왜 이 등급인지" 사유 문구 생성 (앱 상세화면에 노출).
+
     # 사용처: build_summary, build_detail. 앱 SafetyEvaluator가 같은 공식의 클라이언트 버전(오프라인 폴백).
     w = CONFIG["safetyWeights"]
     diff_score = CONFIG["difficultyScore"].get(course["difficulty"], 60)
@@ -235,23 +261,8 @@ def compute_safety(course: Dict[str, Any], weather_score: float,
     return {"score": score, "level": level, "reason": reason_map[lowest], "factors": factors}
 
 
-# ─────────────────────────────────────────────────────────────
-# 거리 (haversine)
-# ─────────────────────────────────────────────────────────────
-def _haversine_km(lat1, lon1, lat2, lon2):
-    # [분석노트] 위경도 거리(km). trail_builder.py·mtn_weather.py에도 복붙돼 있음 — 공용 모듈 통합 후보.
-    # 사용처: build_summary(사용자와의 거리), /mountains(거리순 정렬), /weather(최근접 코스).
-    r = 6371.0
-    p1, p2 = math.radians(lat1), math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dl = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
-    return round(2 * r * math.asin(math.sqrt(a)), 1)
+# REVIEW: ⑤ DTO
 
-
-# ─────────────────────────────────────────────────────────────
-# DTO 빌더
-# ─────────────────────────────────────────────────────────────
 def _today_kst() -> datetime:
     return datetime.now(KST)
 
@@ -274,9 +285,8 @@ async def context_for(course: Dict[str, Any]):
     반환: (raw날씨[기상청], measured[산악기상 실측], sunset_override[KASI])"""
     # [분석노트] 외부 API 3종(기상청·산악관측·KASI) 일괄 수집기. 각 모듈이 자체 캐시(30분/24h) 보유.
     # 사용처: /mountains(코스마다 호출!), /courses/{id}.
-    # ⚠️ N+1 성능 문제의 현장: 목록 30개면 이게 30번 '순차' await — 첫 로딩이 느린 주범.
-    #    개선안: asyncio.gather로 병렬화 또는 격자/관측소 단위 선조회. [다음 업무 TODO]
-    # ⚠️ 내부 3개 호출도 순차 — raw/measured/kasi를 gather로 묶으면 코스당 3배 단축.
+    # TODO: async라서 성능개선 필수
+
     lat, lon = course["latitude"], course["longitude"]
     raw = await kma_weather.fetch_raw_weather(lat, lon)
     measured = await mtn_weather.fetch_measured(lat, lon)
@@ -313,7 +323,8 @@ def build_summary(course: Dict[str, Any], user_lat: Optional[float], user_lon: O
 
     dist_from_user = None
     if user_lat is not None and user_lon is not None:
-        dist_from_user = _haversine_km(user_lat, user_lon, course["latitude"], course["longitude"])
+        # 표시용이라 0.1km 반올림 (구 _haversine_km은 함수 안에서 반올림했음 — geo 통합 후 호출부 책임)
+        dist_from_user = round(haversine_km(user_lat, user_lon, course["latitude"], course["longitude"]), 1)
 
     return {
         "id": course["id"],
@@ -340,12 +351,10 @@ def build_detail(course: Dict[str, Any],
                  raw_override: Optional[Dict[str, Any]] = None,
                  measured: Optional[Dict[str, Any]] = None,
                  sunset_override=None) -> Dict[str, Any]:
-    # [분석노트] /courses/{id} 상세 JSON 조립. summary를 먼저 만들고 update()로
     # 경로·일몰·권장하산시각·날씨 본문·안전지수를 얹음. 앱 ServerCourseDetail과 1:1.
     # 권장 하산 시작 = 일몰 - descentMinutes - 안전버퍼 (앱에도 같은 공식 존재: recommendedDescentStart).
-    # ⚠️ 확정 버그: course dict에 있는 riskNotes(산림청 위험구간)를 응답에 안 실음.
-    #    앱 DTO(ServerCourseDetail.riskNotes)와 상세화면 riskCard가 기다리는 중.
-    #    [다음 업무 TODO] update 블록에 "riskNotes": course.get("riskNotes", []) 한 줄 추가.
+    # TODO: 기획 수정 필수
+
     now = time.time()
     weather, wscore = interpret_weather(raw_override or course["rawWeather"],
                                         course["summitAltitudeM"], measured)
@@ -373,13 +382,11 @@ def build_detail(course: Dict[str, Any],
     return summary
 
 
-# ─────────────────────────────────────────────────────────────
-# 엔드포인트
-# ─────────────────────────────────────────────────────────────
+# REVIEW: ⑥ 엔드포인트
+
 @app.get("/")
 def home():
     return {"message": "서버가 살아있어요 🏔️"}
-
 
 @app.get("/mountains")
 async def list_mountains(query: Optional[str] = None,
@@ -387,10 +394,11 @@ async def list_mountains(query: Optional[str] = None,
                          lon: Optional[float] = None):
     """코스 검색/근처. query 부분일치, lat·lon 있으면 거리 오름차순.
     검색어가 아직 변환 안 된 산이면 등산로 원본(전국 2,200여 산)에서 즉석 변환한다."""
-    # [분석노트] 홈 화면 '근처 산'과 검색의 단일 진입점. 흐름:
+
     # ① 검색어 매칭 → 0건이면 catalog.search_or_convert 즉석 변환(to_thread: CPU 작업이 이벤트루프 안 막게)
     # ② 거리순 정렬 후 상위 30개 컷(외부 API 폭주 방지) ③ 코스마다 context_for+build_summary.
-    # ⚠️ ③이 순차 루프 — 30코스 × 외부API 3종 = 최악 90회 순차 호출(캐시 미스 시). 병렬화 TODO.
+    # FIXME: 즉석으로 찾는건 너무 비효율 -> 수정필수
+
     import asyncio
     courses = catalog.COURSES
     if query:
@@ -406,7 +414,7 @@ async def list_mountains(query: Optional[str] = None,
     # 외부 API(날씨·일몰) 폭주 방지: 가까운 순 상위 30개까지만 요약 생성
     if lat is not None and lon is not None:
         courses = sorted(courses,
-                         key=lambda c: _haversine_km(lat, lon, c["latitude"], c["longitude"]))
+                         key=lambda c: haversine_km(lat, lon, c["latitude"], c["longitude"]))
     courses = courses[:30]
 
     summaries = []
@@ -435,8 +443,11 @@ async def weather(lat: float, lon: float, summitAltitude: float = 800.0):
     if live is not None:
         w, _ = interpret_weather(live, summitAltitude, measured)
         return w
+    if not catalog.COURSES:   # 빈 카탈로그(courses.json 없음) → 기본 목업 날씨
+        w, _ = interpret_weather(dict(catalog._DEFAULT_RAW_WEATHER), summitAltitude, measured)
+        return w
     nearest = min(catalog.COURSES,
-                  key=lambda c: _haversine_km(lat, lon, c["latitude"], c["longitude"]))
+                  key=lambda c: haversine_km(lat, lon, c["latitude"], c["longitude"]))
     w, _ = interpret_weather(nearest["rawWeather"], summitAltitude, measured)
     return w
 
@@ -470,12 +481,8 @@ def safety_config():
     return CONFIG
 
 
-# ─────────────────────────────────────────────────────────────
-# 사용자 데이터 (Supabase 로그인 필요) — 기록 / 즐겨찾기
-# ─────────────────────────────────────────────────────────────
-# [분석노트] 여기부터 축 B(사용자 데이터). Pydantic 모델 = 요청 바디 검증 + 문서화(/docs 자동 반영).
-# 앱 HikeUploadPayload와 1:1. Depends(auth.get_current_user)가 JWT 검증 후 user_id 주입(FastAPI DI).
-# 데이터는 Supabase Postgres (스키마: schema.sql, RLS로 이중 방어).
+# TODO: 로그인 기능은 새롭게 만들 필요있음 -> 현재는 그냥 임시방편
+
 class TrackPoint(BaseModel):
     tOffset: int
     latitude: float

@@ -17,6 +17,8 @@ from typing import Optional, Dict, Any, List
 
 import httpx
 
+from geo import haversine_km   # 공용 거리 계산 — 사용처: nearest_station
+
 BASE = "http://apis.data.go.kr/1400377/mtweather/mountListSearch"
 # 관측소가 이보다 멀면 실측을 쓰지 않는다(다른 산의 날씨일 수 있으므로)
 MAX_STATION_DISTANCE_KM = 10.0
@@ -44,19 +46,10 @@ def _stations() -> List[Dict[str, Any]]:
     return _STATIONS
 
 
-def _haversine_km(lat1, lon1, lat2, lon2):
-    r = 6371.0
-    p1, p2 = math.radians(lat1), math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dl = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
-    return 2 * r * math.asin(math.sqrt(a))
-
-
 def nearest_station(lat: float, lon: float) -> Optional[Dict[str, Any]]:
     best, best_d = None, 1e9
     for s in _stations():
-        d = _haversine_km(lat, lon, s["lat"], s["lon"])
+        d = haversine_km(lat, lon, s["lat"], s["lon"])
         if d < best_d:
             best, best_d = s, d
     if best is None or best_d > MAX_STATION_DISTANCE_KM:
