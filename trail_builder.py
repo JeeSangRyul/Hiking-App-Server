@@ -138,6 +138,19 @@ def load_segments(zp_rel):
     return out
 
 
+def haversine_km(lat1, lon1, lat2, lon2):
+    # [분석노트] 두 위경도 사이 구면 거리(km). 표준 하버사인 공식.
+    # 사용처: _geo_km(거리 결측 보정), cluster_codes(동명이산 판별), build_course(구간 방향 맞추기).
+    # FIXME: 중복 함수 제거 
+    # FIXME: 로직 개선?
+
+    r = 6371.0
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    a = (math.sin(math.radians(lat2 - lat1) / 2) ** 2
+         + math.cos(p1) * math.cos(p2) * math.sin(math.radians(lon2 - lon1) / 2) ** 2)
+    return 2 * r * math.asin(math.sqrt(a))
+
+
 def _geo_km(pts):
     # [분석노트] 폴리라인 길이 = 인접 점 거리의 합. PMNTN_LT(공식 구간거리)가 결측일 때만 쓰는 백업.
     return sum(haversine_km(*pts[i], *pts[i + 1]) for i in range(len(pts) - 1))
@@ -303,6 +316,7 @@ def build_courses_for_name(name, index, sido_filter=None):
     """산명 1개 → 코스 목록(동명이산이면 여러 개, 시도 라벨 포함)."""
     # [분석노트] 이 파일의 최종 진입점. 흐름: 산명 → 산코드들 → cluster_codes(동명이산 분리)
     # → 클러스터마다 build_course 1개 → 동명이산이면 "청계산(경기)" 식 시도 라벨, 중복 시 "(경기·2)".
+    # 호출순서: 산 검색 -> idx로 파일경로 찾음 -> cluster(수정예정) -> 등산로 위경도로 변환 -> 종주 경로(수정예정) -> 점 개수 최적화 -> JSON으로 반환
     # 호출순서: 산 검색 -> idx로 파일경로 찾음 -> cluster(수정예정) -> 등산로 위경도로 변환 -> 종주 경로(수정예정) -> 점 개수 최적화 -> JSON으로 반환
     # 호출자: catalog.search_or_convert(검색 시 즉석 변환), tools/build_catalog.py(일괄 변환).
     # FIXME: 산 코드, 계산 로직, 등 기획적으로 수정 뒤 수정예정
