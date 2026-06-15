@@ -27,6 +27,7 @@ def configured() -> bool:
     return bool(os.environ.get("DATABASE_URL", "").strip())
 
 
+# NOTE: 사용자 디비 연결
 async def pool() -> asyncpg.Pool:
     """연결 풀. 실패 시 500 침묵 대신 명확한 503 + 원인 메시지를 던진다.
     (DATABASE_URL 호스트 오타/리전 불일치를 바로 알 수 있게 — 2026-06-10 디버깅 교훈)"""

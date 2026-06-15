@@ -40,10 +40,10 @@ DEFAULT_TARGETS = "북한산@서울,도봉산@서울,관악산@서울,수락산@
 
 
 def fetch_mountain_info(names):
-    """산림청 산정보 API — 높이·소재지. 키 없으면 빈 dict(폴백 높이 유지)."""
-    # [분석노트] FALLBACK_HEIGHTS(8개산 하드코딩)의 진짜 해결책이 여기 있음 — 산정보 API가
-    # heightM을 줌. 응답은 XML. 현재 mountains.json에 2개산만 있는 건 기본 타겟(서울 4산) 중
-    # 매칭 성공분만 저장됐기 때문. [다음 업무 TODO] 백로그 #9: 전 산 일괄 조회로 확장.
+    """산림청 산정보 API — 높이·소재지. 키 없으면 빈 dict(폴백 높이 유지).
+    TODO: 미리 산의 메타데이터를 가지고 있어야한다. 검색할 때 마다 조회는 너무 비효율적
+    """
+
     key = (os.environ.get("DATA_GO_KR_SERVICE_KEY")
            or os.environ.get("KMA_SERVICE_KEY") or "").strip()
     if not key:
@@ -82,6 +82,9 @@ def fetch_mountain_info(names):
 
 
 def main():
+    """
+    인자 받기 -> 코스 변환 -> 높이 보정 -> 두 json파일로 저장
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--mountains", default=DEFAULT_TARGETS)
     ap.add_argument("--list", help="산명 검색(인덱스)")

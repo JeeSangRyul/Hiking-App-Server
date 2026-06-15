@@ -513,13 +513,17 @@ def _require_db():
         raise HTTPException(status_code=503, detail="DB 미설정: DATABASE_URL 필요")
 
 
+"""
+    NOTE: Depends를 통해서 토큰 먼저 검증
+    데이터를 transaction으로 묶어서 처리함
+"""
 @app.post("/hikes")
 async def create_hike(hike: HikeUpload, user_id: str = Depends(auth.get_current_user)):
     _require_db()
     pool = await db.pool()
-    async with pool.acquire() as conn:
-        async with conn.transaction():
-            row = await conn.fetchrow(
+    async with pool.acquire() as conn: # db 연결 하나 빌림
+        async with conn.transaction(): # 트랜잭션 시작(한 묶음 선언)
+            row = await conn.fetchrow( # db의 public.hikes에 1행 INSERT + id 돌려받기
                 """insert into public.hikes
                    (user_id, course_id, course_name, started_at, ended_at,
                     distance_km, duration_sec, cumulative_gain_m, avg_heart_rate, weather_summary)
@@ -530,9 +534,9 @@ async def create_hike(hike: HikeUpload, user_id: str = Depends(auth.get_current_
                 hike.avgHeartRate, hike.weatherSummary,
             )
             hike_id = row["id"]
-            if hike.track:
-                await conn.executemany(
-                    """insert into public.trackpoints (hike_id, t_offset, latitude, longitude, altitude)
+            if hike.track: # 저장해야 할 좌표가 있다면
+                await conn.executemany( # 여러개의 점을 한꺼번에 처리할거다
+                    """insert into public.trackpoints (hike_id, t_offset, latitude, longitude, altitude) 
                        values ($1,$2,$3,$4,$5)""",
                     [(hike_id, p.tOffset, p.latitude, p.longitude, p.altitude) for p in hike.track],
                 )

@@ -1,19 +1,77 @@
 # 산담(SanDam) 서버
 
-안전 중심 등산 앱 산담의 백엔드. **FastAPI**로 공공데이터(기상청)를 중계하고,
+안전 중심 등산 앱 산담의 백엔드. **FastAPI**로 공공데이터(기상청·천문연·산악기상)를 중계하고,
 안전지수·일몰·하산 데드라인을 연산하며, Supabase에 사용자 산행 기록을 저장합니다.
 
-## 구성
+## 아키텍처
 
+서버는 **두 개의 데이터 축**으로 나뉩니다.
+
+- **축 A — 코스/환경 (읽기 전용):** 산림청 등산로 원본을 변환해 만든 코스에, 요청 시점의 날씨·일몰·안전지수를 얹어 앱에 내려줍니다. DB를 쓰지 않습니다(JSON + 메모리).
+- **축 B — 사용자 데이터 (쓰기):** 앱이 올린 산행 기록·즐겨찾기를 JWT 인증 후 Supabase Postgres에 저장·조회합니다.
+
+`main.py`(FastAPI)가 두 축의 중심이고, DB가 죽어도 축 A(검색·날씨)는 정상 동작하도록 분리돼 있습니다.
+
+```mermaid
+flowchart TD
+    subgraph srcA["원천 (축 A)"]
+        zip["data/raw/*.zip<br/>산림청 등산로"]
+        kma["외부 API 3종<br/>기상청·KASI·산악실측<br/>(kma/kasi/mtn_weather)"]
+        cfg["config.json<br/>안전지수 규칙"]
+        ctl["control.json<br/>입산통제"]
+    end
+
+    subgraph etl["변환 ETL"]
+        bc["build_catalog.py<br/>일괄 변환 CLI"]
+        tb["trail_builder.py<br/>변환 엔진"]
+        cj[("courses.json")]
+    end
+
+    subgraph server["FastAPI 서버"]
+        cat["catalog.py<br/>COURSES 메모리·검색"]
+        main["main.py<br/>날씨+안전 결합"]
+        auth["auth.py<br/>JWT 검증"]
+        db["db.py<br/>연결 풀"]
+    end
+
+    store[("Supabase Postgres<br/>hikes · trackpoints · favorites")]
+    app(["iOS 앱<br/>SanDamAPI"])
+
+    %% 축 A
+    zip --> tb
+    bc --> tb
+    tb -->|생성/덮어쓰기| cj
+    ctl -->|통제 병합| cat
+    cj -->|로드| cat
+    cat -->|코스 뼈대| main
+    cfg --> main
+    kma -->|날씨·일몰| main
+    main -->|"코스+날씨+안전 JSON"| app
+    app -->|"GET /mountains, /courses/:id"| main
+
+    %% 축 B
+    app -->|"POST/GET /hikes, /favorites (JWT)"| main
+    main --> auth
+    main --> db
+    db -->|INSERT/SELECT| store
 ```
-main.py          엔드포인트 + 안전지수/일몰 연산
-catalog.py       코스 카탈로그(추후 산림청 등산로 DB로 교체)
-config.json      안전지수·날씨변환표·버퍼 튜닝값
-kma_weather.py   기상청 단기예보 실연동 (위경도→격자, 캐싱)
-auth.py          Supabase JWT 검증
-db.py            Supabase(Postgres) 연결 풀
-schema.sql       Supabase 테이블 스키마
-```
+
+### 파일별 역할
+
+| 파일 | 한 줄 역할 | 축 |
+|---|---|---|
+| `trail_builder.py` | 산림청 등산로(zip) → 코스 dict 변환 **엔진**. 핵심 키가 전 시스템 스키마 | A |
+| `tools/build_catalog.py` | 엔진을 불러 코스를 **일괄 변환**하는 CLI + 산정보 API로 높이 보정 | A |
+| `catalog.py` | `courses.json`을 메모리(`COURSES`)에 적재·검색, 없으면 즉석 변환 | A |
+| `main.py` | 코스에 **날씨·일몰·안전지수를 요청 시점에 얹어** JSON 응답 (FastAPI) | A+B |
+| `kma_weather.py` | 기상청 단기예보 수집 (없으면 목업 폴백) | A |
+| `kasi_sunset.py` | 천문연(KASI) 일출몰 수집 (없으면 NOAA 자체 연산) | A |
+| `mtn_weather.py` | 산악기상관측망 실측 수집 (관측소 10km 이내일 때) | A |
+| `geo.py` | 공용 거리 계산(하버사인) | A |
+| `auth.py` | Supabase JWT **검증**만(발급은 Supabase) → `user_id` 반환 | B |
+| `db.py` | asyncpg 연결 풀(min1/max5), 축 B 전용 | B |
+| `schema.sql` | DB 테이블 정의(`hikes`/`trackpoints`/`favorites`) + RLS | B |
+| `config.json` | 안전지수 가중치·임계값·날씨 규칙 (코드 밖 튜닝값) | A |
 
 ## 환경변수 (`.env.example` 참고)
 
@@ -25,19 +83,20 @@ schema.sql       Supabase 테이블 스키마
 
 > 키가 하나도 없어도 검색·날씨(목업)·일몰·안전지수 등 **공개 엔드포인트는 정상 동작**합니다.
 
-## 실데이터 파이프라인
+## 데이터 파이프라인
 
 ```
-data/raw/산명_산코드.zip   ← 산림청 등산로 SHP를 여기에
-  ↓  python tools/build_catalog.py        (pip install pyshp pyproj)
-data/courses.json + data/mountains.json   ← catalog.py가 자동 로드 (없으면 목업 4코스)
+data/raw/산명_산코드.zip   ← 산림청 등산로 (ESRI JSON, EPSG:5186)
+  ↓  python tools/build_catalog.py        (pyproj 필요)
+data/courses.json + data/mountains.json   ← catalog.py가 자동 로드
+                                             (없으면 빈 카탈로그 → 검색 시 즉석 변환으로 채움)
 data/control.json                          ← 입산통제 시즌 공고 수동 반영 → 해당 코스 danger 강제
-data/mtweather_stations.json               ← 산악기상관측소 454곳 (기술문서에서 추출, 커밋됨)
+data/mtweather_stations.json               ← 산악기상관측소 454곳 (커밋됨)
 ```
 
-- 변환 첫 실행 전 `--inspect`로 SHP 필드 구조 확인 권장. 좌표계는 EPSG:5186 가정.
+- 변환할 산 검색: `python tools/build_catalog.py --list 설악`
 - **검수 필수:** 변환 후 앱 지도에서 경로가 실제 등산로 위에 그려지는지 확인.
-- 통제정보 출처: 국립공원공단 knps.or.kr / 산림청 hiking.kworks.co.kr (시즌마다 갱신).
+- 통제정보 출처: 국립공원공단 knps.or.kr / 산림청 (시즌마다 갱신).
 
 ## 로컬 실행
 
@@ -74,14 +133,8 @@ uvicorn main:app --reload --port 8000
 ### 2) Railway
 1. railway.app에서 New Project → Deploy from GitHub repo(이 `hiking-server` 폴더).
 2. `railway.json`이 있어 빌드/시작은 자동(`uvicorn main:app`).
-3. Variables 탭에 `KMA_SERVICE_KEY`, `SUPABASE_JWT_SECRET`, `DATABASE_URL` 입력.
+3. Variables 탭에 `DATA_GO_KR_SERVICE_KEY`, `SUPABASE_JWT_SECRET`, `DATABASE_URL` 입력.
 4. 배포되면 발급된 **https 도메인**을 앱 `SanDamAPI.baseURL`(prod)에 넣기.
 
-### 3) 기상청 키
-공공데이터포털(data.go.kr) → '기상청_단기예보 조회서비스' 활용신청 → 서비스키를 `KMA_SERVICE_KEY`에.
-
-## 실데이터로 교체할 지점
-
-- `kma_weather.py` — 이미 기상청 실연동. 산악기상관측망(mtweather) 추가 시 여기 보강.
-- `catalog.py` — 산림청/국립공원 등산로 DB·GPX로 교체.
-- `_course_sunset()` — KASI API로 바꾸거나 현재 NOAA 연산 유지.
+### 3) 공공데이터 키
+공공데이터포털(data.go.kr)에서 '기상청_단기예보 조회서비스' 활용신청 → 서비스키(Decoding)를 `DATA_GO_KR_SERVICE_KEY`에. 같은 키로 천문연 일출몰·산악기상 실측도 동작합니다.

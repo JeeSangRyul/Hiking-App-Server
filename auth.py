@@ -50,6 +50,7 @@ def configured() -> bool:
     return bool(_SECRET or _URL)
 
 
+# NOTE: 토큰을 발급하지않고 검증만 한다.(발급은 Supabase가 진행)
 def get_current_user(authorization: str = Header(default="")) -> str:
     """검증 성공 시 Supabase user id(sub) 반환. 실패 시 401/503."""
     if not configured():
